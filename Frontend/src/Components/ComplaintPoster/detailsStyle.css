@@ -1,0 +1,13 @@
+.BackgroundImage {
+    height: 40rem;
+    width: 99vw;
+    background: linear-gradient(to right,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)), url('../../assets/personWithMobile.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: center;
+    background-size: cover;
+    display: grid;
+    background-attachment: fixed;
+}
