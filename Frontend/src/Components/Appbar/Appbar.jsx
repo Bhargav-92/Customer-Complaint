@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,7 +11,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
@@ -36,6 +35,9 @@ const LinkStyle = {
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [state, setState] = React.useState(false);
+  const [name, setName] = useState();
+
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
@@ -64,8 +66,6 @@ function Navbar() {
         break;
       case 'Logout':
         localStorage.clear();
-        localStorage.setItem("login", "");
-        localStorage.setItem("LoginStatus ", "Logged out Successfully");
         navigate('/')
         handleCloseUserMenu();
         break;
@@ -75,8 +75,14 @@ function Navbar() {
     }
   }
 
+  // Function to capitalize the first letter of each word
+  const capitalizeWords = (string) => string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
 
-  const [state, setState] = React.useState(false);
+  useEffect(() => {
+    const name = localStorage.getItem('name');
+    if (name) setName(capitalizeWords(name));
+  }, []);
+
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -308,8 +314,7 @@ function Navbar() {
               >
                 <Stack direction={'column'}>
                   <Stack direction={'column'} sx={{ margin: "1rem 1rem", alignItems: 'flex-start' }} >
-                    <Typography textAlign="center" sx={{ fontWeight: 700 }} >Bhargav Thakar</Typography>
-                    <Typography textAlign="center">tkr@gmail.com</Typography>
+                    <Typography textAlign="center" sx={{ fontWeight: 700 }} >{name}</Typography>
                   </Stack>
                   <hr style={{
                     border: ".1px solid #555"

@@ -11,6 +11,7 @@ import MyComplaint from './Pages/MyComplaint';
 import Faq from './Pages/Faq';
 import SignIn from './Pages/Login';
 import Register from './Pages/Register';
+import Layout from './Components/Admin/AdminLayout/Layout'
 const Profile = lazy(() => import('./Pages/Profile'));
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Auth Routes */}
-          <Route index element={<SignIn />} /> {/* Sign-in page is the default page */}
+          <Route path="/" index element={<SignIn />} /> {/* Sign-in page is the default page */}
           <Route path='/register' element={<Register />} />
 
           {/* client routes */}
@@ -33,8 +34,11 @@ function App() {
           </Route>
 
           {/* Admin routes */}
-          <Route path='/admin/dashboard' element={<Dashboard />} />
-          <Route path='/admin/complaints' element={<Complaints />} />
+          {/* Admin routes */}
+          <Route path="/admin" element={<Layout />}>
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/complaints" element={<Complaints />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
