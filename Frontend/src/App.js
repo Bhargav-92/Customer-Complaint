@@ -12,6 +12,7 @@ import Faq from './Pages/Faq';
 import SignIn from './Pages/Login';
 import Register from './Pages/Register';
 import Layout from './Components/Admin/AdminLayout/Layout'
+import Nopage from './Pages/Nopage';
 const Profile = lazy(() => import('./Pages/Profile'));
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             <Route path='/faq' element={<Faq />} />
             <Route path='/profile' element={<Profile />} />
           </Route>
+          <Route path='*' element={<Nopage />} />
 
           {/* Admin routes */}
           {/* Admin routes */}

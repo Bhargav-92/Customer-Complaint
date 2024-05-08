@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Grid, TextField, Stack, Typography, Box, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Make sure to import the CSS for react-toastify
 import axios from 'axios';
 import SignImg from '../assets/login.png';
 
@@ -29,18 +30,22 @@ function Login() {
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     axios.post('http://localhost:3001/login', { name, email, password })
       .then(result => {
-        console.log(result)
         if (result.data === "Success") {
-          navigate('/home')
-          localStorage.setItem('name',name)
+          navigate('/home');
+          localStorage.setItem('name', name);
+          toast.success("Logged in successfully!");
+        } else {
+          // Assuming the server sends back a non-"Success" response for failed logins
+          throw new Error('Invalid username or password.');
         }
       })
       .catch(err => {
-        toast.error(err)
-      })
+        // Handle errors from network issues or the catch block above
+        toast.error(err.response?.data || err.message || "An unexpected error occurred.");
+      });
   };
 
   return (

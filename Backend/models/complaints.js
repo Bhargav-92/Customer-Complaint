@@ -10,8 +10,9 @@ const ComplaintsSchema = new mongoose.Schema({
     type: String,
     sectors: String,
     company: String,
-    date: Date,
-    details: String,   
+    date: { type: Date, default: Date.now }, // This will automatically set the date when the complaint is filed
+    details: String,
+    Status: { type: String, default: 'Pending' }  // Default status set to 'Pending'
 });
 
 const ComplaintsModel = mongoose.model('complaints', ComplaintsSchema);

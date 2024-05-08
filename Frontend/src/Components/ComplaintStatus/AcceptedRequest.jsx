@@ -3,36 +3,38 @@ import Box from '@mui/material/Box';
 import { useCollapse } from 'react-collapsed';
 import { Button, Card, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import Img from '../../assets/logo/Customer_Complaint.png';
-import { ComplaintDetailsData } from './ComplaintDetails'; // Import the function to fetch complaint details
+import { complaintsData } from './ComplaintDetails';
+
 
 export default function PendingRequests() {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
-  const [complaintId, setComplaintId] = useState(null); // State to store the complaint ID
-  const [complaintDetails, setComplaintDetails] = useState(null); // State to store the complaint details
-
-  // Function to fetch complaint details based on ID
-  const fetchComplaintDetails = (id) => {
-    const details = ComplaintDetailsData(id);
-    setComplaintDetails(details);
-  };
+  const [complaints, setComplaints] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (isExpanded && complaintId) {
-      fetchComplaintDetails(complaintId); // Fetch details when expanded and complaintId is set
-    }
-  }, [isExpanded, complaintId]);
-
-  // Function to handle toggle and set complaint ID
-  const handleToggle = (id) => {
-    setComplaintId(id);
-  };
+    // Load complaints data from local JSON file
+    const fetchData = async () => {
+      try {
+        const data = await complaintsData;
+  
+        // Filter complaints based on status
+        const filteredComplaints = data.filter(complaint => complaint.status === 'Completed');
+  
+        setComplaints(filteredComplaints);
+      } catch (error) {
+        setError(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
 
   return (
-    <Box sx={{ minHeight: 180, flexGrow: 1, maxWidth: 300 }}>
-      {ComplaintDetailsData.map(complaint => (
+    <Box sx={{ minHeight: 180, flexGrow: 1, maxWidth: 300}}>
+      {complaints.map(complaint => (
         <div key={complaint.id} style={{marginTop:'1rem'}}>
           <div className="collapsiale">
-            <div className="header" {...getToggleProps()} onClick={() => handleToggle(complaint.id)}>
+            <div className="header" {...getToggleProps()}>
               <Card elevation={6} sx={{ width: { md: '50rem' }, xs: '30rem', border: '2px solid #F57C00', borderRadius: '1rem' }}>
                 <Grid container md={12} p={2} alignItems={'center'}>
                   <Grid item md={2}>
@@ -49,7 +51,7 @@ export default function PendingRequests() {
                 </Grid>
               </Card>
             </div>
-            {isExpanded && complaintDetails && complaintDetails.id === complaint.id && (
+            {isExpanded && (
               <div {...getCollapseProps()}>
                 <div className="content">
                   <Card elevation={6} sx={{ width: { md: '50rem' }, xs: '30rem', border: '2px solid #F57C00', borderRadius: '1rem' }}>
@@ -58,35 +60,35 @@ export default function PendingRequests() {
                         <TableBody>
                           <TableRow>
                             <TableCell align="left">Customer :-</TableCell>
-                            <TableCell align="left">{complaintDetails.customer}</TableCell>
+                            <TableCell align="left">{complaint.customer}</TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell align="left">phone :-</TableCell>
-                            <TableCell align="left">{complaintDetails.phone}</TableCell>
+                            <TableCell align="left">{complaint.phone}</TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell align="left">Status :-</TableCell>
-                            <TableCell align="left">{complaintDetails.status}</TableCell>
+                            <TableCell align="left">{complaint.status}</TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell align="left">Date :-</TableCell>
-                            <TableCell align="left">{complaintDetails.date}</TableCell>
+                            <TableCell align="left">{complaint.date}</TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell align="left">State :-</TableCell>
-                            <TableCell align="left">{complaintDetails.state}</TableCell>
+                            <TableCell align="left">{complaint.state}</TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell align="left">City :-</TableCell>
-                            <TableCell align="left">{complaintDetails.city}</TableCell>
+                            <TableCell align="left">{complaint.city}</TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell align="left">Sector :-</TableCell>
-                            <TableCell align="left">{complaintDetails.sector}</TableCell>
+                            <TableCell align="left">{complaint.sector}</TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell align="left">Complaint Type  :-</TableCell>
-                            <TableCell align="left">{complaintDetails.type}</TableCell>
+                            <TableCell align="left">{complaint.type}</TableCell>
                           </TableRow>
                           {/* Add other rows for other data */}
                         </TableBody>

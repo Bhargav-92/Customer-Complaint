@@ -6,6 +6,7 @@ import InputField from '../Components/Input/InputField';
 import Button from '@mui/joy/Button';
 import Footer from '../Components/Footer/Footer';
 import { ToastContainer, toast } from 'react-toastify';
+import UploadIcon from '@mui/icons-material/Upload';
 
 const Complaint = () => {
   const SubmitText = "Submit";
@@ -22,9 +23,8 @@ const Complaint = () => {
   const [company, setCompany] = useState('');
   const [date, setDate] = useState('');
   const [details, setDetails] = useState('');
-  const [document, setDocument] = useState('');
-
-
+  const [document, setDocument] = useState(null);
+  const [fileName, setFileName] = useState('');
 
 
   const handleSubmit = (e) => {
@@ -38,7 +38,27 @@ const Complaint = () => {
         console.error(err);
         toast.error("Error submitting the form");
       });
+
+      setCity("")
+      setComplaintType("")
+      setCompany("")
+      setFirstName("")
+      setLastName("")
+      setDate("")
+      setEmail("")
+      setPhone("")
+      setDetails("")
+      setSectors("")
+      setState("")
   }
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setDocument(file);
+      setFileName(file.name);
+    }
+  };
 
   return (
     <>
@@ -93,6 +113,15 @@ const Complaint = () => {
                 />
               </FormControl>
             </Grid>
+            <Grid item md={12} xs={12}>
+              <Button variant="contained" component="label" sx={{ background: '#000', color: "#fff" }}>
+                <UploadIcon />
+                <Typography pl={1}>Upload File</Typography>
+                <input type="file" hidden onChange={handleFileChange} />
+              </Button>
+              {fileName && <Typography p={1} color={'#F57C00'}>{fileName}</Typography>}
+              <Typography p={1} color={'text.secondary'} fontWeight={'700'}>User can upload a document here</Typography>
+            </Grid>            
             <Grid item md={12} xs={12} textAlign="center">
               <Button variant="contained" type="submit" sx={{
                 background: '#F57C00',
