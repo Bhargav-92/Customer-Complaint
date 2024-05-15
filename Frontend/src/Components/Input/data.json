@@ -1,0 +1,23 @@
+{
+    "states": [
+      {"id": 1, "name": "Gujarat"},
+      {"id": 2, "name": "Maharashtra"},
+      {"id": 3, "name": "Delhi"}
+    ],
+    "city": [
+      {"id": 1, "name": "Rajkot"},
+      {"id": 2, "name": "Mumbai"},
+      {"id": 3, "name": "New Delhi"}
+    ],
+    "complaintTypes": [
+      {"id": 1, "name": "Food"},
+      {"id": 2, "name": "Electronics"},
+      {"id": 3, "name": "Transport"}
+    ],
+    "sectors": [
+      {"id": 1, "name": "FMCG"},
+      {"id": 2, "name": "Technology"},
+      {"id": 3, "name": "Automobile"}
+    ]
+  }
+  
