@@ -25,16 +25,28 @@ const inputStyles = {
 
 function Login() {
   const navigate = useNavigate();
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 4529cd5961cedcb15b4323aed76487b34a9aa9bf
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     axios.post('http://localhost:3001/api/login', { email, password })
       .then(result => {
         if (result.data === "Success") {
           navigate('/home');
           localStorage.setItem('email', email);
+=======
+    axios.post('http://localhost:3001/login', {email, password })
+      .then(result => {
+        if (result.data === "Success") {
+          navigate('/home');
+          
+>>>>>>> 4529cd5961cedcb15b4323aed76487b34a9aa9bf
           toast.success("Logged in successfully!");
         } else {
           throw new Error('Invalid username or password.');
@@ -55,6 +67,10 @@ function Login() {
             <Typography fontWeight={400} color={'#666'} marginTop={'10px'}>to Continue to Complaint System</Typography>
             <form onSubmit={handleSubmit}>
               <Stack direction={'column'} spacing={3} mt={2}>
+<<<<<<< HEAD
+=======
+               
+>>>>>>> 4529cd5961cedcb15b4323aed76487b34a9aa9bf
                 <TextField
                   required
                   variant="standard"
