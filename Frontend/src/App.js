@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import React ,{lazy, useState} from 'react';
+=======
 import React, { Suspense, lazy } from 'react';
+>>>>>>> 4529cd5961cedcb15b4323aed76487b34a9aa9bf
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Dashboard from './Components/Admin/Dashboard/Dashboard';
@@ -13,7 +17,8 @@ import SignIn from './Pages/Login';
 import Register from './Pages/Register';
 import Layout from './Components/Admin/AdminLayout/Layout'
 import Nopage from './Pages/Nopage';
-const Profile = lazy(() => import('./Pages/Profile'));
+import Profile from './Pages/Profile'
+
 
 function App() {
   return (
@@ -31,8 +36,14 @@ function App() {
             <Route path='/complaint' element={<Complaint />} />
             <Route path='/mycomplaint' element={<MyComplaint />} />
             <Route path='/faq' element={<Faq />} />
+<<<<<<< HEAD
+            
+=======
          
+>>>>>>> 4529cd5961cedcb15b4323aed76487b34a9aa9bf
             <Route path='/profile' element={<Profile />} />
+          
+          
           </Route>
           <Route path='*' element={<Nopage />} />
 

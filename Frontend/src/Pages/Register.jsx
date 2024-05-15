@@ -32,20 +32,18 @@ const Register = () => {
   const [conPass, setConPass] = useState('');
 
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/users', { name, email, phone, password })
+    axios.post('http://localhost:3001/api/users', { name, email, phone, password })
       .then(result => {
-        console.log(result)
-        navigate('/')
+        console.log(result);
+        navigate('/');
       })
       .catch(err => {
         console.error(err);
-        toast.error(err);
+        toast.error('Failed to create user. Please try again.');
       });
-
-  }
+  };
 
   return (
     <>
