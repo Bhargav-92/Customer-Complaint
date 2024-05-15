@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Dashboard from './Components/Admin/Dashboard/Dashboard';
@@ -31,6 +31,7 @@ function App() {
             <Route path='/complaint' element={<Complaint />} />
             <Route path='/mycomplaint' element={<MyComplaint />} />
             <Route path='/faq' element={<Faq />} />
+            <Suspense fallback={<div>Loading...</div>}></Suspense>
             <Route path='/profile' element={<Profile />} />
           </Route>
           <Route path='*' element={<Nopage />} />
