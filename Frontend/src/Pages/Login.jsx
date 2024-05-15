@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grid, TextField, Stack, Typography, Box, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Make sure to import the CSS for react-toastify
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import SignImg from '../assets/login.png';
 
@@ -25,25 +25,22 @@ const inputStyles = {
 
 function Login() {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/login', { name, email, password })
+    axios.post('http://localhost:3001/api/login', { email, password })
       .then(result => {
         if (result.data === "Success") {
           navigate('/home');
-          localStorage.setItem('name', name);
+          localStorage.setItem('email', email);
           toast.success("Logged in successfully!");
         } else {
-          // Assuming the server sends back a non-"Success" response for failed logins
           throw new Error('Invalid username or password.');
         }
       })
       .catch(err => {
-        // Handle errors from network issues or the catch block above
         toast.error(err.response?.data || err.message || "An unexpected error occurred.");
       });
   };
@@ -58,14 +55,6 @@ function Login() {
             <Typography fontWeight={400} color={'#666'} marginTop={'10px'}>to Continue to Complaint System</Typography>
             <form onSubmit={handleSubmit}>
               <Stack direction={'column'} spacing={3} mt={2}>
-                <TextField
-                  required
-                  variant="standard"
-                  label="Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  fullWidth
-                />
                 <TextField
                   required
                   variant="standard"
