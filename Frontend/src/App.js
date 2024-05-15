@@ -37,7 +37,7 @@ function App() {
           </Route>
           <Route path='*' element={<Nopage />} />
 
-
+     
           {/* Admin routes */}
           <Route path="/admin" element={<Layout />}>
             <Route path="/admin/dashboard" element={<Dashboard />} />
