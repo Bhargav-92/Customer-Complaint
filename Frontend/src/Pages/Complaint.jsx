@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Box, Grid, Typography, FormControl, FormLabel, Input } from '@mui/material';
+import { Box, Grid, Typography, FormControl, FormLabel, Menu, MenuItem } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import InputField from '../Components/Input/InputField';
 import Button from '@mui/joy/Button';
 import Footer from '../Components/Footer/Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import UploadIcon from '@mui/icons-material/Upload';
+import BasicSelect from '../Components/Select/BasicSelect';
+import Sectors from '../Components/Sectors/Sectors';
+
 
 const Complaint = () => {
   const SubmitText = "Submit";
@@ -16,41 +19,36 @@ const Complaint = () => {
   const [lastname, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
+  const [area, setArea] = useState('');
   const [complaintType, setComplaintType] = useState('');
   const [sectors, setSectors] = useState('');
   const [company, setCompany] = useState('');
-  const [date, setDate] = useState('');
   const [details, setDetails] = useState('');
   const [document, setDocument] = useState(null);
   const [fileName, setFileName] = useState('');
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/complaints', { firstname, lastname, email, phone, state, city, complaintType, sectors, company, date, details })
+    axios.post('http://localhost:3001/complaints', { firstname, lastname, email, phone, area, complaintType, sectors, company, details })
       .then(result => {
         console.log(result);
-        toast.success("Your Complaint Send Successfully");
+        toast.success("Your Complaint Sent Successfully");
       })
       .catch(err => {
         console.error(err);
         toast.error("Error submitting the form");
       });
 
-      setCity("")
-      setComplaintType("")
-      setCompany("")
-      setFirstName("")
-      setLastName("")
-      setDate("")
-      setEmail("")
-      setPhone("")
-      setDetails("")
-      setSectors("")
-      setState("")
-  }
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPhone('');
+    setArea('');
+    setComplaintType('');
+    setSectors('');
+    setCompany('');
+    setDetails('');
+  };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -60,16 +58,26 @@ const Complaint = () => {
     }
   };
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
   return (
     <>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <Box p={12}>
-        <Typography variant='h4'>Register Your Complaint</Typography>
-        <hr style={{ width: '100%', height: '1px', backgroundColor: '#666', marginTop: '20px' }} />
+        <Typography variant='h4' style={{textAlign: 'center'}}>Register Your Complaint</Typography>
+        <hr style={{ width: '100%', height: '2px', backgroundColor: '#34495e', marginTop: '20px' }} />
         <form onSubmit={handleSubmit}>
           <Grid container spacing={5} justifyContent="center" alignItems="center" pt={5}>
             <Grid item md={4} xs={12}>
-              <InputField label="First Name" value={firstname} onChange={(e) => setFirstName(e.target.value)} placeholder="Enter First Name" isRequired={true} />
+              <InputField label="First Name" value={firstname} onChange={(e) => setFirstName(e.target.value)} placeholder="Enter First Name" isRequired={true} required />
             </Grid>
             <Grid item md={4} xs={12}>
               <InputField label="Last Name" value={lastname} onChange={(e) => setLastName(e.target.value)} placeholder="Enter Last Name" isRequired={true} />
@@ -78,28 +86,19 @@ const Complaint = () => {
               <InputField label="Email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter Email" isRequired={true} />
             </Grid>
             <Grid item md={4} xs={12}>
-              <InputField label="State" value={state} onChange={(e) => setState(e.target.value)} placeholder="Enter State" isRequired={true} />
-            </Grid>
-            <Grid item md={4} xs={12}>
               <InputField label="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Enter Phone Number" isRequired={true} />
             </Grid>
             <Grid item md={4} xs={12}>
-              <InputField label="City" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Enter City" isRequired={true} />
+             <BasicSelect />
             </Grid>
             <Grid item md={6} xs={12}>
               <InputField label="Complaint Type" value={complaintType} onChange={(e) => setComplaintType(e.target.value)} placeholder="Enter Complaint Type" isRequired={true} />
             </Grid>
             <Grid item md={6} xs={12}>
-              <InputField label="Sectors" value={sectors} onChange={(e) => setSectors(e.target.value)} placeholder="Enter Sector" isRequired={true} />
+              <Sectors/>
             </Grid>
             <Grid item md={8} xs={12}>
               <InputField label="Company" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Enter Company" isRequired={true} />
-            </Grid>
-            <Grid item md={4} xs={12}>
-              <FormControl fullWidth>
-                <FormLabel required>Date</FormLabel>
-                <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} sx={{ background: '#EAE9E9' }} />
-              </FormControl>
             </Grid>
             <Grid item md={12} xs={12}>
               <FormControl fullWidth>

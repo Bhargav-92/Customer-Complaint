@@ -31,12 +31,11 @@ function App() {
             <Route path='/complaint' element={<Complaint />} />
             <Route path='/mycomplaint' element={<MyComplaint />} />
             <Route path='/faq' element={<Faq />} />
-            <Suspense fallback={<div>Loading...</div>}></Suspense>
+         
             <Route path='/profile' element={<Profile />} />
           </Route>
           <Route path='*' element={<Nopage />} />
 
-          {/* Admin routes */}
           {/* Admin routes */}
           <Route path="/admin" element={<Layout />}>
             <Route path="/admin/dashboard" element={<Dashboard />} />

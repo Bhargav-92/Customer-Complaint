@@ -25,17 +25,17 @@ const inputStyles = {
 
 function Login() {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
+ 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/login', { name, email, password })
+    axios.post('http://localhost:3001/login', {email, password })
       .then(result => {
         if (result.data === "Success") {
           navigate('/home');
-          localStorage.setItem('name', name);
+          
           toast.success("Logged in successfully!");
         } else {
           // Assuming the server sends back a non-"Success" response for failed logins
@@ -58,14 +58,7 @@ function Login() {
             <Typography fontWeight={400} color={'#666'} marginTop={'10px'}>to Continue to Complaint System</Typography>
             <form onSubmit={handleSubmit}>
               <Stack direction={'column'} spacing={3} mt={2}>
-                <TextField
-                  required
-                  variant="standard"
-                  label="Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  fullWidth
-                />
+               
                 <TextField
                   required
                   variant="standard"
