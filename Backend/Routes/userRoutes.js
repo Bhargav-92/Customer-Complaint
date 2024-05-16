@@ -27,6 +27,13 @@ router.post('/login', async (req, res) => {
 // User creation endpoint
 router.post('/users', async (req, res) => {
     try {
+
+        // const {name, email, password, phone} = req.body()
+
+        // if(!email || !password || !phone || !name) {
+        //     return res.json({error: 'Invalid email or password'})
+        // }
+
         const newUser = new UserModel({
             ...req.body,
         });

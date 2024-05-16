@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Box, Grid, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button, TextareaAutosize } from '@mui/material';
+import { Box, Grid, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button } from '@mui/material';
 import Footer from '../Components/Footer/Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import UploadIcon from '@mui/icons-material/Upload';
 import { useFormik } from 'formik';
+import UploadIcon from '@mui/icons-material/Upload';
 import * as Yup from 'yup';
 
 const Complaint = () => {
   const SubmitText = "Submit";
 
-  // Define the dynamic options for the select fields
   const complaintTypes = ['Type1', 'Type2', 'Type3', 'Type4', 'Type5'];
   const areas = ['Area1', 'Area2', 'Area3', 'Area4', 'Area5'];
   const sectors = ['Sector1', 'Sector2', 'Sector3', 'Sector4', 'Sector5'];
+
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const formik = useFormik({
     initialValues: {
@@ -28,7 +29,6 @@ const Complaint = () => {
       company: '',
       details: '',
       document: null,
-      fileName: '',
     },
     validationSchema: Yup.object({
       firstname: Yup.string().required('First Name is required'),
@@ -41,32 +41,32 @@ const Complaint = () => {
       company: Yup.string().required('Company is required'),
       details: Yup.string().required('Complaint Details are required'),
     }),
-    onSubmit: (values, { resetForm }) => {
-      const formData = new FormData();
-      for (const key in values) {
-        formData.append(key, values[key]);
-      }
-
-      axios.post('http://localhost:4000/api/complaints', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        const formData = new FormData();
+        for (const key in values) {
+          formData.append(key, values[key]);
         }
-      })
-      .then(result => {
+        formData.append('document', selectedFile);
+
+        const response = await axios.post('http://localhost:4000/api/complaints', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
         toast.success("Your Complaint Sent Successfully");
         resetForm();
-      })
-      .catch(err => {
-        toast.error("Error submitting the form");
-      });
+      } catch (err) {
+        toast.error(err);
+      }
     },
   });
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      formik.setFieldValue('document', file);
-      formik.setFieldValue('fileName', file.name);
+      setSelectedFile(file);
+      formik.setFieldValue('document', file.name);
     }
   };
 
@@ -91,7 +91,7 @@ const Complaint = () => {
                 helperText={formik.touched.firstname && formik.errors.firstname}
               />
             </Grid>
-            <Grid item md={6} xs={12}>
+             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 id="lastname"
@@ -231,7 +231,7 @@ const Complaint = () => {
                 <Typography pl={1}>Upload File</Typography>
                 <input type="file" hidden onChange={handleFileChange} />
               </Button>
-              {formik.values.fileName && <Typography p={1} color={'#F57C00'}>{formik.values.fileName}</Typography>}
+              {selectedFile && <Typography p={1} color={'#F57C00'}>{selectedFile.name}</Typography>}
               <Typography p={1} color={'text.secondary'} fontWeight={'700'}>User can upload a document here</Typography>
             </Grid>
             <Grid item md={12} xs={12} textAlign="center">

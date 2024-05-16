@@ -1,20 +1,40 @@
+// routes/complaintRoutes.js
 const express = require('express');
 const ComplaintsModel = require('../models/complaints');
 const multer = require('multer');
+const path = require('path');
 const router = express.Router();
 
 // Configure multer for file uploads
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../uploads/')); // Uploads folder
+    },
+    filename: function (req, file, fp) {
+        cb(null, Date.now() + '-' + file.originalname); // Unique filename
+    }
+});
+
+// File type filter to allow only images, videos, and PDFs
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype.startsWith('image/') || file.mimetype.startsWith('video/') || file.mimetype === 'application/pdf') {
+        cb(null, true); // Accept the file
+    } else {
+        cb(new Error('File type not supported'), false); // Reject the file
+    }
+};
+
+const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 // Complaint submission endpoint
 router.post('/complaints', upload.single('document'), async (req, res) => {
     try {
         const newComplaint = new ComplaintsModel({
             ...req.body,
-            document: req.file ? req.file.buffer : null, // Save the document file buffer if exists
+            document: req.file ? req.file.path : null, // Save the document path if exists
         });
         const complaint = await newComplaint.save();
+        console.log('complaint', complaint)
         res.json(complaint);
     } catch (err) {
         console.error('Error saving complaint:', err);

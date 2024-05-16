@@ -1,18 +1,19 @@
+// models/complaints.js
 const mongoose = require('mongoose');
 
 const ComplaintsSchema = new mongoose.Schema({
     firstname: String,
     lastname: String,
     email: String,
-    phone: Number,
+    phone: String,
     area: String,
     complaintType: String,
     sectors: String,
     company: String,
-    date: { type: Date, default: Date.now }, // This will automatically set the date when the complaint is filed
+    date: { type: Date, default: Date.now },
     details: String,
-    document: Buffer, // Store the document as a binary data buffer
-    status: { type: String, default: 'Pending' }, // Default status set to 'Pending'
+    document: String,
+    status: { type: String, default: 'Pending' },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
