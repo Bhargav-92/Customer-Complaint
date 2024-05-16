@@ -46,7 +46,6 @@ function Login() {
         const result = await axios.post('http://localhost:4000/api/login', values);
         if (result.data === "Success") {
           navigate('/home');
->>>>>>> e53627fb78b667d22184cd62d8b88de4edc18cfd
           toast.success("Logged in successfully!");
         } else {
           throw new Error('Invalid username or password.');
