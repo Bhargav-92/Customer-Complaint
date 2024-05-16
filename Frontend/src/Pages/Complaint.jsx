@@ -6,10 +6,10 @@ import InputField from '../Components/Input/InputField';
 import Button from '@mui/joy/Button';
 import Footer from '../Components/Footer/Footer';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import UploadIcon from '@mui/icons-material/Upload';
 import BasicSelect from '../Components/Select/BasicSelect';
 import Sectors from '../Components/Sectors/Sectors';
-
 
 const Complaint = () => {
   const SubmitText = "Submit";
@@ -24,12 +24,24 @@ const Complaint = () => {
   const [sectors, setSectors] = useState('');
   const [company, setCompany] = useState('');
   const [details, setDetails] = useState('');
+  const [translatedDetails, setTranslatedDetails] = useState('');
   const [document, setDocument] = useState(null);
   const [fileName, setFileName] = useState('');
 
+  const handleTranslate = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/api/translate', { text: details });
+      setTranslatedDetails(response.data.translatedText);
+      toast.success("Translation successful");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error translating text");
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/complaints', { firstname, lastname, email, phone, area, complaintType, sectors, company, details })
+    axios.post('http://localhost:3001/complaints', { firstname, lastname, email, phone, area, complaintType, sectors, company, details: translatedDetails || details })
       .then(result => {
         console.log(result);
         toast.success("Your Complaint Sent Successfully");
@@ -48,6 +60,7 @@ const Complaint = () => {
     setSectors('');
     setCompany('');
     setDetails('');
+    setTranslatedDetails('');
   };
 
   const handleFileChange = (event) => {
@@ -61,13 +74,6 @@ const Complaint = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
   return (
     <>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
@@ -89,7 +95,7 @@ const Complaint = () => {
               <InputField label="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Enter Phone Number" isRequired={true} />
             </Grid>
             <Grid item md={4} xs={12}>
-             <BasicSelect />
+              <BasicSelect />
             </Grid>
             <Grid item md={6} xs={12}>
               <InputField label="Complaint Type" value={complaintType} onChange={(e) => setComplaintType(e.target.value)} placeholder="Enter Complaint Type" isRequired={true} />
@@ -111,6 +117,14 @@ const Complaint = () => {
                   style={{ width: '100%', background: '#EAE9E9', border: 'none' }}
                 />
               </FormControl>
+              <Button onClick={handleTranslate} variant="contained" sx={{ marginTop: '10px', background: '#000', color: "#fff" }}>
+                Translate to English
+              </Button>
+              {translatedDetails && (
+                <Typography p={1} color={'#F57C00'}>
+                  Translated Details: {translatedDetails}
+                </Typography>
+              )}
             </Grid>
             <Grid item md={12} xs={12}>
               <Button variant="contained" component="label" sx={{ background: '#000', color: "#fff" }}>
