@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React ,{lazy, useState} from 'react';
-=======
-import React, { Suspense, lazy } from 'react';
->>>>>>> 4529cd5961cedcb15b4323aed76487b34a9aa9bf
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Dashboard from './Components/Admin/Dashboard/Dashboard';
@@ -36,11 +32,7 @@ function App() {
             <Route path='/complaint' element={<Complaint />} />
             <Route path='/mycomplaint' element={<MyComplaint />} />
             <Route path='/faq' element={<Faq />} />
-<<<<<<< HEAD
             
-=======
-         
->>>>>>> 4529cd5961cedcb15b4323aed76487b34a9aa9bf
             <Route path='/profile' element={<Profile />} />
           
           
