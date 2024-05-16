@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid, TextField, Stack, Typography, Box, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import SignImg from '../assets/login.png';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
 
 const ButtonStyle = {
   fontSize: '20px',
@@ -23,8 +25,19 @@ const inputStyles = {
   borderRadius: { md: 'none', sm: '1rem' }
 };
 
+const initialValues = {
+  email: '',
+  password: '',
+};
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().required('Password is required'),
+});
+
 function Login() {
   const navigate = useNavigate();
+<<<<<<< HEAD
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -35,15 +48,28 @@ function Login() {
         if (result.data === "Success") {
           navigate('/home');
           localStorage.setItem('email', email);
+=======
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: async (values, { setSubmitting }) => {
+      try {
+        const result = await axios.post('http://localhost:3001/login', values);
+        if (result.data === "Success") {
+          navigate('/home');
+>>>>>>> e53627fb78b667d22184cd62d8b88de4edc18cfd
           toast.success("Logged in successfully!");
         } else {
           throw new Error('Invalid username or password.');
         }
-      })
-      .catch(err => {
+      } catch (err) {
         toast.error(err.response?.data || err.message || "An unexpected error occurred.");
-      });
-  };
+      } finally {
+        setSubmitting(false);
+      }
+    }
+  });
 
   return (
     <>
@@ -53,15 +79,19 @@ function Login() {
           <Box sx={{ padding: { md: 'none', xs: '30px' } }}>
             <Typography variant='h4' fontWeight={700}>Sign In</Typography>
             <Typography fontWeight={400} color={'#666'} marginTop={'10px'}>to Continue to Complaint System</Typography>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formik.handleSubmit}>
               <Stack direction={'column'} spacing={3} mt={2}>
                 <TextField
                   required
                   variant="standard"
                   type="email"
                   label="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
                   fullWidth
                 />
                 <TextField
@@ -69,11 +99,15 @@ function Login() {
                   variant="standard"
                   type="password"
                   label="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name="password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.password && Boolean(formik.errors.password)}
+                  helperText={formik.touched.password && formik.errors.password}
                   fullWidth
                 />
-                <Button type="submit" style={ButtonStyle}>Submit</Button>
+                <Button type="submit" style={ButtonStyle} disabled={formik.isSubmitting}>Submit</Button>
                 <Typography textAlign="center">
                   No Account? <Link to='/register' style={{ textDecoration: 'none', color: '#666' }}>Sign Up</Link>
                 </Typography>
