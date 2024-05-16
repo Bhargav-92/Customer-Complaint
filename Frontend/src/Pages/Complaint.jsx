@@ -6,7 +6,7 @@ import InputField from '../Components/Input/InputField';
 import Button from '@mui/joy/Button';
 import Footer from '../Components/Footer/Footer';
 import { ToastContainer, toast } from 'react-toastify';
-<<<<<<< HEAD
+
 import 'react-toastify/dist/ReactToastify.css';
 import UploadIcon from '@mui/icons-material/Upload';
 import BasicSelect from '../Components/Select/BasicSelect';
@@ -43,7 +43,6 @@ const Complaint = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:3001/complaints', { firstname, lastname, email, phone, area, complaintType, sectors, company, details: translatedDetails || details })
-=======
 
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -78,7 +77,7 @@ const Complaint = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     axios.post('http://localhost:3001/complaints', values)
->>>>>>> e53627fb78b667d22184cd62d8b88de4edc18cfd
+
       .then(result => {
         console.log(result);
         toast.success("Your Complaint Sent Successfully");
@@ -88,7 +87,7 @@ const Complaint = () => {
         console.error(err);
         toast.error("Error submitting the form");
       });
-<<<<<<< HEAD
+
 
     setFirstName('');
     setLastName('');
@@ -113,17 +112,16 @@ const Complaint = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-=======
+
   };
 
->>>>>>> e53627fb78b667d22184cd62d8b88de4edc18cfd
+
   return (
     <>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <Box p={12}>
         <Typography variant='h4' style={{ textAlign: 'center' }}>Register Your Complaint</Typography>
         <hr style={{ width: '100%', height: '2px', backgroundColor: '#34495e', marginTop: '20px' }} />
-<<<<<<< HEAD
         <form onSubmit={handleSubmit}>
           <Grid container spacing={5} justifyContent="center" alignItems="center" pt={5}>
             <Grid item md={4} xs={12}>
@@ -191,7 +189,7 @@ const Complaint = () => {
             </Grid>
           </Grid>
         </form>
-=======
+
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -301,7 +299,7 @@ const Complaint = () => {
             </Form>
           )}
         </Formik>
->>>>>>> e53627fb78b667d22184cd62d8b88de4edc18cfd
+
       </Box>
       <Footer />
     </>
