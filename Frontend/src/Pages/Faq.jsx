@@ -302,7 +302,8 @@ const Faq = () => {
             {/* TreeView for emergency numbers */}
             <TreeView
               aria-label="emergency-numbers"
-              defaultCollapseIcon={<ExpandMoreIcon />}
+              defaul
+              tCollapseIcon={<ExpandMoreIcon />}
               defaultExpandIcon={<ChevronRightIcon />}
             >
               {renderTreeWithEmergencyNumbers(data.emergencyNumbers)}
