@@ -46,7 +46,7 @@ const Register = () => {
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const result = await axios.post('http://localhost:3001/api/users', values);
+        const result = await axios.post('http://localhost:4000/api/users', values);
         console.log(result);
         navigate('/');
         toast.success('User created successfully!');

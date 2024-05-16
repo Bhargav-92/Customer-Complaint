@@ -1,15 +1,23 @@
 const express = require('express');
 const ComplaintsModel = require('../models/complaints');
-
+const multer = require('multer');
 const router = express.Router();
 
+// Configure multer for file uploads
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
 // Complaint submission endpoint
-router.post('/complaints', async (req, res) => {
+router.post('/complaints', upload.single('document'), async (req, res) => {
     try {
-        const newComplaint = new ComplaintsModel(req.body);
+        const newComplaint = new ComplaintsModel({
+            ...req.body,
+            document: req.file ? req.file.buffer : null, // Save the document file buffer if exists
+        });
         const complaint = await newComplaint.save();
         res.json(complaint);
     } catch (err) {
+        console.error('Error saving complaint:', err);
         res.status(500).json(err);
     }
 });

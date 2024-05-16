@@ -148,7 +148,7 @@ export default function Footer() {
           justifyContent: 'center',
         }}>
         <Typography>
-          &#169; 2024 Indian Consumer Complaints Forum
+          &#169; {new Date().getFullYear()} Indian Consumer Complaints Forum
         </Typography>
       </Stack>
     </>

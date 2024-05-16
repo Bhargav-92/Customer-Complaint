@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, TextField, Stack, Typography, Box, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -37,28 +37,16 @@ const validationSchema = Yup.object().shape({
 
 function Login() {
   const navigate = useNavigate();
-<<<<<<< HEAD
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    axios.post('http://localhost:3001/api/login', { email, password })
-      .then(result => {
-        if (result.data === "Success") {
-          navigate('/home');
-          localStorage.setItem('email', email);
-=======
 
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const result = await axios.post('http://localhost:3001/login', values);
+        const result = await axios.post('http://localhost:4000/api/login', values);
         if (result.data === "Success") {
           navigate('/home');
->>>>>>> e53627fb78b667d22184cd62d8b88de4edc18cfd
+          localStorage.setItem('email', values.email);
           toast.success("Logged in successfully!");
         } else {
           throw new Error('Invalid username or password.');

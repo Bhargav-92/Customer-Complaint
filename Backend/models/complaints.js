@@ -5,19 +5,18 @@ const ComplaintsSchema = new mongoose.Schema({
     lastname: String,
     email: String,
     phone: Number,
-    state: String,
-    city: String,
-    type: String,
+    area: String,
+    complaintType: String,
     sectors: String,
     company: String,
     date: { type: Date, default: Date.now }, // This will automatically set the date when the complaint is filed
     details: String,
-    Status: { type: String, default: 'Pending' } , // Default status set to 'Pending'
-    userId:{
-        type: mongoose.SchemaTypes.ObjectId,
+    document: Buffer, // Store the document as a binary data buffer
+    status: { type: String, default: 'Pending' }, // Default status set to 'Pending'
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
-
-   }
+    }
 });
 
 const ComplaintsModel = mongoose.model('complaints', ComplaintsSchema);
