@@ -37,18 +37,6 @@ const validationSchema = Yup.object().shape({
 
 function Login() {
   const navigate = useNavigate();
-<<<<<<< HEAD
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    axios.post('http://localhost:3001/api/login', { email, password })
-      .then(result => {
-        if (result.data === "Success") {
-          navigate('/home');
-          localStorage.setItem('email', email);
-=======
 
   const formik = useFormik({
     initialValues,
@@ -58,7 +46,6 @@ function Login() {
         const result = await axios.post('http://localhost:3001/login', values);
         if (result.data === "Success") {
           navigate('/home');
->>>>>>> e53627fb78b667d22184cd62d8b88de4edc18cfd
           toast.success("Logged in successfully!");
         } else {
           throw new Error('Invalid username or password.');
