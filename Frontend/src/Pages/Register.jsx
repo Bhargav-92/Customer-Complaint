@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, TextField, Stack, Typography, Box, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import signupimg from '../assets/signup.png';
+import signupimg from '../assets/Register.jpg';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -64,7 +64,7 @@ const Register = () => {
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <Grid container p={9} alignItems={'center'} justifyContent={'center'}>
         <Grid item md={6} sx={{ display: { md: 'block', xs: 'none', sm: 'none' } }}>
-          <img src={signupimg} alt="Sign Up" height={400} width={550} />
+          <img src={signupimg} alt="Sign Up" style={{height: 'auto', width: '500px'}} />
         </Grid>
         <Grid item md={5} xs={12} sx={{ ...inputStyles }}>
           <Box sx={{ padding: { md: 'none', xs: '30px' } }}>
@@ -72,7 +72,7 @@ const Register = () => {
               Sign Up
             </Typography>
             <Typography fontWeight={400} color={'#666'} marginTop={'10px'}>
-              to Continue to Complaint System
+              Register yourself to file complaints
             </Typography>
 
             <form onSubmit={formik.handleSubmit}>
@@ -137,9 +137,9 @@ const Register = () => {
                   helperText={formik.touched.conPass && formik.errors.conPass}
                 />
                 <Button type="submit" style={ButtonStyle} disabled={formik.isSubmitting}>Submit</Button>
-                <Stack direction={'row'} spacing={4}>
-                  <Typography style={{ color: '#444' }}>
-                    Do You Have Account??{' '}
+                <Stack direction={'row'} spacing={4} style={{alignSelf: 'center'}}>
+                  <Typography style={{ color: '#444',  }}>
+                    Already Have An Account ?{' '}
                     <Link to='/' style={{ textDecoration: 'none', color: '#222' }}>
                       Sign In
                     </Link>

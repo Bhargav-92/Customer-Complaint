@@ -28,7 +28,7 @@ const Complaint = () => {
       sectors: '',
       company: '',
       details: '',
-      document: null,
+      document: '',
     },
     validationSchema: Yup.object({
       firstname: Yup.string().required('First Name is required'),
@@ -56,8 +56,9 @@ const Complaint = () => {
         });
         toast.success("Your Complaint Sent Successfully");
         resetForm();
+        setSelectedFile(null); // Reset the selected file
       } catch (err) {
-        toast.error(err);
+        toast.error(err.response?.data?.message || "Something went wrong");
       }
     },
   });

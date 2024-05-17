@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
-import HomePng from '../../assets/homePage.png';
+import HomePng from '../../assets/homePage.jpg';
 import styles from '../../CSS/style.module.css';
 import { Link } from 'react-router-dom';
 
@@ -73,7 +73,7 @@ const HomeLanding = () => {
                         xs: 'none'
                     }
                 }}>
-                    <img src={HomePng} className={styles.HomeImage} alt={'Home'} height={480} width={680} />
+                    <img src={HomePng} className={styles.HomeImage} alt={'Home'} height={'auto'} width={500}  />
                 </Box>
             </Grid>
         </Grid>

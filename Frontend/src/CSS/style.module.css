@@ -1,6 +1,8 @@
 /* home page animation design */
 .HomeImage{
     animation: UpAndDown 6s infinite linear;
+    border-radius: 100%;
+    margin-left: 50px;
 }
 
 .header{

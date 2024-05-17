@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 import Counter from '../CounterUpPage/Counter';
+import { Link } from 'react-router-dom';
 
 const AboutLanding = () => {
     return (
@@ -8,30 +9,36 @@ const AboutLanding = () => {
             <Grid container md={12} justifyContent={'center'} alignItems={'center'} p={15}>
                 <Grid item md={4}>
                     <Stack direction={'column'} spacing={2}>
-                        <Typography variant="h5" >
+                        {/* <Typography variant="h5" >
                             Work progress
-                        </Typography>
-                        <Typography variant='h2' fontWeight={600} color={'#F57C00'}>
+                        </Typography> */}
+                        <Typography variant='h2' fontWeight={600} color={'#F57C00'} paddingTop={4}>
                             How it Works
                         </Typography>
                     </Stack>
                 </Grid>
                 <Grid item md={6} spacing={10}>
-                    <Typography>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. At minima alias vitae molestias minus fugiat quaerat labore, consectetur recusandae porro obcaecati accusamus quam, tenetur doloribus quod distinctio ex. Exercitationem cupiditate, beatae quos dignissimos quidem numquam praesentium officiis possimus amet et.
+                    <Typography marginLeft={8} marginTop={5}>
+                         Register yourself on the platform using register form. 
+                         Login With Credentails and on the dashboard click on the file "Complaint" button. 
+                         Fill the complaint form and submit it.  
+                         You will get a confirmation email and your complaint will be registered. <br />
                     </Typography>
                 </Grid>
                 <Grid item md={2} p={10}>
                     <Button variant='contained' sx={{
+                        marginTop: '40px',
                         background: '#F57C00',
                         color: '#fff',
                         ":hover": {
-                            background: '#ffff',
+                            opacity: 0.8,
                             border: '1px solid #F57C00',
-                            color: '#F57C00'
+                            color: '#000'
                         }
                     }}>
-                        Complaint
+                        <Link to={'/complaint'} style={{ outline: 'none', textDecoration: 'none', color: '#fff', fontWeight: '400', verticalAlign: 'text-bottom' }}>
+                            Complaint
+                        </Link>
                     </Button>
                 </Grid>
             </Grid>

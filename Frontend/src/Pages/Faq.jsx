@@ -257,13 +257,13 @@ const Faq = () => {
       {/* Header */}
       <Box p={15} textAlign="center">
         <Typography variant="h4" color="textSecondary">
-          FAQs
+          Frequently Asked Questions
         </Typography>
         <Typography>
-          <Link to="/home" style={{ textDecoration: 'none', color: '#000' }}>
+          
             Home
-          </Link>{' '}
-          &gt; Faq
+          {' '}
+         <span style={{color: '#F39C12'}}>&gt;</span>  Faq
         </Typography>
         <Typography pt={4}>
           Find answers to our most frequently asked questions below. If you can't find what <br />

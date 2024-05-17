@@ -65,7 +65,7 @@ function Login() {
         <Grid item md={5} xs={12} sx={{ ...inputStyles }}>
           <Box sx={{ padding: { md: 'none', xs: '30px' } }}>
             <Typography variant='h4' fontWeight={700}>Sign In</Typography>
-            <Typography fontWeight={400} color={'#666'} marginTop={'10px'}>to Continue to Complaint System</Typography>
+            <Typography fontWeight={400} color={'#666'} marginTop={'10px'}>We Provide Seamless Complaint Register Portal</Typography>
             <form onSubmit={formik.handleSubmit}>
               <Stack direction={'column'} spacing={3} mt={2}>
                 <TextField
@@ -96,14 +96,14 @@ function Login() {
                 />
                 <Button type="submit" style={ButtonStyle} disabled={formik.isSubmitting}>Submit</Button>
                 <Typography textAlign="center">
-                  No Account? <Link to='/register' style={{ textDecoration: 'none', color: '#666' }}>Sign Up</Link>
+                 Don't Have an Account? <Link to='/register' style={{ textDecoration: 'none', color: '#666' }}>Sign Up</Link>
                 </Typography>
               </Stack>
             </form>
           </Box>
         </Grid>
         <Grid item md={5} sx={{ display: { md: 'block', xs: 'none', sm: 'none' } }}>
-          <img src={SignImg} alt="Sign In" height={400} width={600} />
+          <img src={SignImg} alt="Sign In" style={{height: 'auto', width: '600px'}} />
         </Grid>
       </Grid>
     </>

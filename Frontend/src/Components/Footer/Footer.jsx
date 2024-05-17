@@ -34,7 +34,7 @@ export default function Footer() {
         <Grid item md={3} xs={12}>
           <Stack direction={'row'} alignItems={'center'} pb={2} spacing={1}>
             <img src={footerLogo} alt='Footer' height={40} width={50} />
-            <Typography variant='h5' fontWeight={600} color={'#FF6B00'}>Customer - <span style={{ color: '#000' }}>Complaint </span></Typography>
+            <Typography variant='h5' fontWeight={600} color={'#FF6B00'}>Customer <span style={{ color: '#000' }}>Complaint </span></Typography>
           </Stack>
           <Stack direction={'column'} spacing={3}>
             <Typography textAlign={'justify'} width={'80%'}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto odio praesentium mollitia accusamus odit itaque. Quibusdam ipsum ad sed iusto?</Typography>
@@ -62,9 +62,9 @@ export default function Footer() {
             <Link to='/faq' style={{ color: "#000", textDecoration: 'none' }}>
               <Typography>&bull; Faq</Typography>
             </Link>
-            <Link to='/faq' style={{ color: "#000", textDecoration: 'none' }}>
+            {/* <Link to='/faq' style={{ color: "#000", textDecoration: 'none' }}>
               <Typography>&bull; Help</Typography>
-            </Link>
+            </Link> */}
             <Link to='/faq' style={{ color: "#000", textDecoration: 'none' }}>
               <Typography>&bull; Customer Guidelines</Typography>
             </Link>
