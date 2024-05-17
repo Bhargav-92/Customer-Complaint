@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require('dotenv').config(); // Load environment variables from .env file
-const translateRoutes = require('./Routes/translate');
 const userRoutes = require('./Routes/userRoutes');
 const complaintRoutes = require('./Routes/complaintRoutes');
 
@@ -26,7 +25,6 @@ mongoose.connect(mongoURI, {
 // Use routes
 app.use('/api', userRoutes);
 app.use('/api', complaintRoutes);
-app.use('/api', translateRoutes);
 
 // Server configuration
 const port = process.env.PORT || 3001;
