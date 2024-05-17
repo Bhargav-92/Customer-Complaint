@@ -38,6 +38,7 @@ exports.updateComplaintStatus = async (req, res) => {
             { new: true, runValidators: true }
         );
 
+
         if (!updatedComplaint) {
             return res.status(404).json({ message: "Complaint not found" });
         }
