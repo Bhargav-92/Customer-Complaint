@@ -51,7 +51,8 @@ const Complaint = () => {
 
         const response = await axios.post('http://localhost:4000/api/complaints', formData, {
           headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            'set-headers': localStorage.getItem('user'),
           }
         });
         toast.success("Your Complaint Sent Successfully");
