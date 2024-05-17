@@ -39,7 +39,6 @@ exports.updateComplaintStatus = async (req, res) => {
         );
 
 
-        console.log(updatedComplaint)
         if (!updatedComplaint) {
             return res.status(404).json({ message: "Complaint not found" });
         }
