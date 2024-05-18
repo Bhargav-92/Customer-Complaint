@@ -1,4 +1,4 @@
-import React ,{lazy, useState} from 'react';
+import React, { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Dashboard from './Components/Admin/Dashboard/Dashboard';
@@ -11,10 +11,10 @@ import MyComplaint from './Pages/MyComplaint';
 import Faq from './Pages/Faq';
 import SignIn from './Pages/Login';
 import Register from './Pages/Register';
-import Layout from './Components/Admin/AdminLayout/Layout'
+import Layout from './Components/Admin/AdminLayout/Layout';
 import Nopage from './Pages/Nopage';
-import Profile from './Pages/Profile'
-
+import Profile from './Pages/Profile';
+import Chatbot from './Components/ComplaintChatBot/ComplaintChatBot';
 
 function App() {
   return (
@@ -26,16 +26,13 @@ function App() {
           <Route path='/register' element={<Register />} />
 
           {/* client routes */}
-          <Route path='/' element={<Appbar />}>
+          <Route path='/' element={<AppWithChatbot />}>
             <Route path='/home' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/complaint' element={<Complaint />} />
             <Route path='/mycomplaint' element={<MyComplaint />} />
             <Route path='/faq' element={<Faq />} />
-            
             <Route path='/profile' element={<Profile />} />
-          
-          
           </Route>
           <Route path='*' element={<Nopage />} />
 
@@ -49,5 +46,13 @@ function App() {
     </>
   );
 }
+
+// Higher-order component to wrap Appbar with Chatbot
+const AppWithChatbot = () => (
+  <>
+    <Appbar />
+    <Chatbot />
+  </>
+);
 
 export default App;

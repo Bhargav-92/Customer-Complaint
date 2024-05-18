@@ -2,11 +2,11 @@ import React from 'react';
 import { Grid, TextField, Stack, Typography, Box, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import signupimg from '../assets/Register.jpg';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { axios_instance } from '../endPoints/baseURL';
 
 const ButtonStyle = {
   fontSize: '20px',
@@ -46,7 +46,7 @@ const Register = () => {
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const result = await axios.post('http://localhost:4000/api/users', values);
+        const result = await axios_instance.post('/register', values);
         console.log(result);
         navigate('/');
         toast.success('User created successfully!');
@@ -58,7 +58,6 @@ const Register = () => {
       }
     }
   });
-
   return (
     <>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />

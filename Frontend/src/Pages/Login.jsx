@@ -7,6 +7,7 @@ import axios from 'axios';
 import SignImg from '../assets/login.png';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { axios_instance } from '../endPoints/baseURL';
 
 const ButtonStyle = {
   fontSize: '20px',
@@ -43,7 +44,7 @@ function Login() {
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const result = await axios.post('http://localhost:4000/api/login', values);
+        const result = await axios_instance.post("/login", values)
         if (result.data === "Success") {
           localStorage.setItem('user', result.data);
           navigate('/home');
