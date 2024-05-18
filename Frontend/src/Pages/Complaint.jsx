@@ -52,9 +52,10 @@ const Complaint = () => {
         const response = await axios.post('http://localhost:4000/api/complaints', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
-            'set-headers': localStorage.getItem('user'),
+             'Authorization': "Bearer "+ localStorage.getItem('token')
           }
         });
+        console.log(response);
         toast.success("Your Complaint Sent Successfully");
         resetForm();
         setSelectedFile(null); // Reset the selected file

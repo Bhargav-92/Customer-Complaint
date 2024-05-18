@@ -1,3 +1,4 @@
+// src/App.js
 import React, { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -14,38 +15,36 @@ import Register from './Pages/Register';
 import Layout from './Components/Admin/AdminLayout/Layout';
 import Nopage from './Pages/Nopage';
 import Profile from './Pages/Profile';
-import Chatbot from './Components/ComplaintChatBot/ComplaintChatBot';
-import { AuthProvider } from './Components/AuthContext/AuthContext';
-// import PrivateRoute from './Components/ProtectedRoutes/PrivateRoute';
+
 
 function App() {
   return (
+    
+      <BrowserRouter>
+        <Routes>
+          {/* Auth Routes */}
+          <Route path="/" element={<SignIn />}  />      
+          <Route path='/register' element={<Register />} />
 
-    <BrowserRouter>
-      <Routes>
-        {/* Auth Routes */}
-        <Route path="/" index element={<SignIn />} /> {/* Sign-in page is the default page */}
-        <Route path='/register' element={<Register />} />
+          {/* Client routes */}
+          <Route path='/' element={<AppWithChatbot />}>
+            <Route path='/home' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/complaint' element={<Complaint />} />
+            <Route path='/mycomplaint' element={<MyComplaint />} />
+            <Route path='/faq' element={<Faq />} />
+            <Route path='/profile' element={<Profile />} />
+          </Route>
+          <Route path='*' element={<Nopage />} />
 
-        {/* client routes */}
-        <Route path='/' element={<AppWithChatbot />}>
-          <Route path='/home' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/complaint' element={<Complaint />} />
-          <Route path='/mycomplaint' element={<MyComplaint />} />
-          <Route path='/faq' element={<Faq />} />
-          <Route path='/profile' element={<Profile />} />
-        </Route>
-        <Route path='*' element={<Nopage />} />
-
-        {/* Admin routes */}
-        <Route path="/admin" element={<Layout />}>
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route path="/admin/complaints" element={<Complaints />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-
+          {/* Admin routes */}
+          <Route path="/admin" element={<Layout />}>
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/complaints" element={<Complaints />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+ 
   );
 }
 

@@ -45,9 +45,12 @@ function Login() {
     onSubmit: async (values, { setSubmitting }) => {
       try {
         const response = await axios_instance.post("/login", values)
-        const { token } = response.data;
+        const { token, User } = response.data;
+        console.log(response)
         toast.success("Logged in successfully!");
-        localStorage.setItem('token', token); // Store the token in localStorage
+        localStorage.setItem('token', token); 
+        localStorage.setItem('user', JSON.stringify(User)); 
+        // Store the token in localStorage
         localStorage.setItem("isAuthenticated", true); //
         // console.log("Loggd in ")
         navigate('/home');

@@ -7,8 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { axios_instance } from '../endPoints/baseURL';
-import PrivateRoute from '../Components/ProtectedRoutes/PrivateRoute'; // Import PrivateRoute component
-import { AuthContext } from '../Components/AuthContext/AuthContext'; // Import AuthContext for authentication
+
 
 const ButtonStyle = {
   fontSize: '20px',
@@ -36,7 +35,6 @@ const validationSchema = Yup.object().shape({
 
 const Register = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useContext(AuthContext); // Get isAuthenticated from context
 
   const formik = useFormik({
     initialValues: {
@@ -56,14 +54,12 @@ const Register = () => {
       } catch (err) {
         console.error(err);
         toast.error('Failed to create user. Please try again.');
-      } finally {
-        setSubmitting(false);
-      }
+      } 
     }
   });
 
   // If user is already authenticated, redirect to home page
-  if (isAuthenticated) {
+  if (localStorage.getItem('isAuthenticated') === 'true') {
     navigate('/home');
     return null;
   }

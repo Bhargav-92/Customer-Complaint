@@ -5,6 +5,7 @@ const NETWORK = process.env.REACT_APP_URL_NETWORK;
 const BASE_URL = LOCAL
 
 export const axios_instance = axios.create({
-    baseURL: BASE_URL+"/api"
+    baseURL: BASE_URL+"/api",
+    headers:  {'Authorization': "Bearer "+ localStorage.getItem('token')}
   });
 
