@@ -52,8 +52,10 @@ function Login() {
         navigate('/home');
 =======
         const result = await axios_instance.post("/login", values)
-        if (result.data === "Success") {
-          localStorage.setItem('user', result.data);
+        
+        const {token }= result.data;
+        localStorage.setItem('token', token);
+        toast.success("Logged in successfully!");
           navigate('/home');
           toast.success("Logged in successfully!");
         } else {

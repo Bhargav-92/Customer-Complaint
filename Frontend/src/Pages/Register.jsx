@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Grid, TextField, Stack, Typography, Box, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import signupimg from '../assets/Register.jpg';
@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { axios_instance } from '../endPoints/baseURL';
+import PrivateRoute from '../Components/ProtectedRoutes/PrivateRoute'; // Import PrivateRoute component
+import { AuthContext } from './AuthContext'; // Import AuthContext for authentication
 
 const ButtonStyle = {
   fontSize: '20px',
@@ -34,6 +36,7 @@ const validationSchema = Yup.object().shape({
 
 const Register = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useContext(AuthContext); // Get isAuthenticated from context
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +49,7 @@ const Register = () => {
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const result = await axios_instance.post('/register', values);
+        const result = await axios_instance.post('/users', values);
         console.log(result);
         navigate('/');
         toast.success('User created successfully!');
@@ -58,6 +61,13 @@ const Register = () => {
       }
     }
   });
+
+  // If user is already authenticated, redirect to home page
+  if (isAuthenticated) {
+    navigate('/home');
+    return null;
+  }
+
   return (
     <>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
