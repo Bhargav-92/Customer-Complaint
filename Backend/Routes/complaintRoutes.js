@@ -6,6 +6,7 @@ const {
     getAllComplaints,
     updateComplaintStatus
 } = require('../Controllers/complaint');
+const auth = require('../Middleware/authmiddleware');
 
 const router = express.Router();
 
@@ -31,12 +32,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Complaint submission endpoint
-router.post('/complaints', upload.single('document'), submitComplaint);
+router.post('/complaints',auth, upload.single('document'), submitComplaint);
 
 // Get all complaints
-router.get('/complaints', getAllComplaints);
+router.get('/complaints', auth, getAllComplaints);
 
 // Update complaint status
-router.patch('/complaints/:id', updateComplaintStatus);
+router.patch('/complaints/:id',auth, updateComplaintStatus);
 
 module.exports = router;

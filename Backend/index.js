@@ -26,6 +26,8 @@ mongoose.connect(mongoURI, {
 app.use('/api', userRoutes);
 app.use('/api', complaintRoutes);
 
+
+
 // Server configuration
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
