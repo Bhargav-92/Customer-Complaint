@@ -46,11 +46,11 @@ function Login() {
       try {
         const response = await axios_instance.post("/login", values)
         const { token } = response.data;
-        localStorage.setItem('token', token); // Store the token in localStorage
-        localStorage.setItem("isAuthenticated",true); //
         toast.success("Logged in successfully!");
+        localStorage.setItem('token', token); // Store the token in localStorage
+        localStorage.setItem("isAuthenticated", true); //
         // console.log("Loggd in ")
-        navigate('/home');       
+        navigate('/home');
       } catch (err) {
         toast.error(err.response?.data || err.message || "An unexpected error occurred.");
       } finally {
@@ -97,14 +97,14 @@ function Login() {
                 />
                 <Button type="submit" style={ButtonStyle} disabled={formik.isSubmitting}>Submit</Button>
                 <Typography textAlign="center">
-                 Don't Have an Account? <Link to='/register' style={{ textDecoration: 'none', color: '#666' }}>Sign Up</Link>
+                  Don't Have an Account? <Link to='/register' style={{ textDecoration: 'none', color: '#666' }}>Sign Up</Link>
                 </Typography>
               </Stack>
             </form>
           </Box>
         </Grid>
         <Grid item md={5} sx={{ display: { md: 'block', xs: 'none', sm: 'none' } }}>
-          <img src={SignImg} alt="Sign In" style={{height: 'auto', width: '600px'}} />
+          <img src={SignImg} alt="Sign In" style={{ height: 'auto', width: '600px' }} />
         </Grid>
       </Grid>
     </>

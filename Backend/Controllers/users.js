@@ -13,12 +13,12 @@ exports.login = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
             const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '20d' });
-            //    delete the user password from responce 
-            // const userObj = user.toObject();
-            // userObj.id = userObj._id;
-            // delete userObj._id;
-            // delete userObj.password;
-            res.json({ token, ...user });
+            
+            //    Change the name from _doc to User
+            const userObj = user.toObject();
+
+            // passwrod removed from user userobject
+            res.json({ token, User: userObj });
         } else {
             res.status(401).json({ error: "Incorrect password" });
         }
