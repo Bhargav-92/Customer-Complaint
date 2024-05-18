@@ -15,7 +15,7 @@ import Layout from './Components/Admin/AdminLayout/Layout';
 import Nopage from './Pages/Nopage';
 import Profile from './Pages/Profile';
 import Chatbot from './Components/ComplaintChatBot/ComplaintChatBot';
-import { AuthProvider } from './Pages/AuthContext';
+import { AuthProvider } from './Components/AuthContext/AuthContext';
 import PrivateRoute from './Components/ProtectedRoutes/PrivateRoute';
 
 function App() {

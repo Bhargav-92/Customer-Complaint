@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { axios_instance } from '../endPoints/baseURL';
 import PrivateRoute from '../Components/ProtectedRoutes/PrivateRoute'; // Import PrivateRoute component
-import { AuthContext } from './AuthContext'; // Import AuthContext for authentication
+import { AuthContext } from '../Components/AuthContext/AuthContext'; // Import AuthContext for authentication
 
 const ButtonStyle = {
   fontSize: '20px',

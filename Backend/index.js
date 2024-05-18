@@ -30,7 +30,7 @@ app.use('/api', complaintRoutes);
 
 
 // Server configuration
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 4001;
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });

@@ -44,24 +44,13 @@ function Login() {
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       try {
-<<<<<<< HEAD
-        const response = await axios.post('http://localhost:4000/api/login', values);
+        const response = await axios_instance.post("/login", values)
         const { token } = response.data;
         localStorage.setItem('token', token); // Store the token in localStorage
+        localStorage.setItem("isAuthenticated",true); //
         toast.success("Logged in successfully!");
-        navigate('/home');
-=======
-        const result = await axios_instance.post("/login", values)
-        
-        const {token }= result.data;
-        localStorage.setItem('token', token);
-        toast.success("Logged in successfully!");
-          navigate('/home');
-          toast.success("Logged in successfully!");
-        } else {
-          throw new Error('Invalid username or password.');
-        }
->>>>>>> c84f5a8a521e715c2c909f6fcd262d3e73f5ae7a
+        // console.log("Loggd in ")
+        navigate('/home');       
       } catch (err) {
         toast.error(err.response?.data || err.message || "An unexpected error occurred.");
       } finally {
