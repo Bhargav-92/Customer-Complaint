@@ -45,6 +45,7 @@ function Login() {
       try {
         const result = await axios.post('http://localhost:4000/api/login', values);
         if (result.data === "Success") {
+          localStorage.setItem('user', result.data);
           navigate('/home');
           toast.success("Logged in successfully!");
         } else {
