@@ -1,5 +1,5 @@
 const express = require('express');
-const { login, createUser } = require('../Controllers/users');
+const { login, createUser, updateUserProfile, upload } = require('../Controllers/users');
 const auth = require('../Middleware/authmiddleware');
 
 const router = express.Router();
@@ -14,5 +14,8 @@ router.post('/users', createUser);
 router.get('/protected', auth, (req, res) => {
     res.json({ message: 'This is a protected route', user: req.user });
 });
+
+// Update user and add profile image
+router.patch('/users/:id', auth, upload, updateUserProfile);
 
 module.exports = router;

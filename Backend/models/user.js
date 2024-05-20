@@ -14,10 +14,23 @@ const UsersSchema = new mongoose.Schema({
         required: true  // Make the password field required
     },
     phone: Number,
+
+    // diffine the role for different users
+    // role: {
+    //     type: String,
+    //     enum: ['user', 'admin']
+    // },
+    ProfileImage: {
+        type: String,
+        default: ''
+    },
+    date: { type: Date, default: Date.now },
+    // added time when user created
 });
 
+
 // Pre-save hook to hash the password
-UsersSchema.pre('save', function(next) {
+UsersSchema.pre('save', function (next) {
     // Check if the password field is modified
     if (!this.isModified('password')) {
         return next();

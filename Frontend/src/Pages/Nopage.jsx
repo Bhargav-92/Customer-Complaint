@@ -36,18 +36,13 @@ const Nopage = () => {
             <Typography paddingTop={5} color="#555">We Can't find the page you're looking for </Typography>
             <Typography color="#555">You can either return the previous page , visit our homepage</Typography>
             <Typography color="#555">Or Contact our support team</Typography>
-            <Stack direction={'row'} spacing={2} marginTop={8}>
-              <Link to={'/home'}>
+            {/* <Stack direction={'row'} spacing={2} marginTop={8}>
+              <Link to={'/'}>
                 <Button sx={{...btn}}>
-                  Visit Home 
+                  Back to Login
                 </Button>
-              </Link>
-              <Link to={'/faq'}>
-                <Button sx={{...btn}}>
-                  Contact Us
-                </Button>
-              </Link>
-            </Stack>
+              </Link>             
+            </Stack> */}
           </Stack>
         </Grid>
       </Grid>

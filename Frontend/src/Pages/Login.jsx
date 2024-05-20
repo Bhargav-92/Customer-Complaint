@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Grid, TextField, Stack, Typography, Box, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import SignImg from '../assets/login.png';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { axios_instance } from '../endPoints/baseURL';
+import AuthContext from '../Components/AuthContext/AuthContext';
 
 const ButtonStyle = {
   fontSize: '20px',
@@ -38,7 +39,7 @@ const validationSchema = Yup.object().shape({
 
 function Login() {
   const navigate = useNavigate();
-
+  const {login} = useContext(AuthContext)
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -46,13 +47,13 @@ function Login() {
       try {
         const response = await axios_instance.post("/login", values)
         const { token, User } = response.data;
+        login('user')
         console.log(response)
         toast.success("Logged in successfully!");
         localStorage.setItem('token', token); 
         localStorage.setItem('user', JSON.stringify(User)); 
         // Store the token in localStorage
         localStorage.setItem("isAuthenticated", true); //
-        // console.log("Loggd in ")
         navigate('/home');
 
       } catch (err) {

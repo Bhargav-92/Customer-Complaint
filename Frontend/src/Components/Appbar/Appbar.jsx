@@ -67,7 +67,7 @@ function Navbar() {
       case 'Logout':
         localStorage.clear();
         localStorage.removeItem('User') 
-        navigate('/')
+        navigate('/login')
         handleCloseUserMenu();
         break;
 
