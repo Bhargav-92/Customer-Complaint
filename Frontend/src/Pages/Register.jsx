@@ -35,6 +35,7 @@ const validationSchema = Yup.object().shape({
 
 const Register = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useContext(AuthContext); // Get isAuthenticated from context
 
   const formik = useFormik({
     initialValues: {
@@ -59,7 +60,7 @@ const Register = () => {
   });
 
   // If user is already authenticated, redirect to home page
-  if (localStorage.getItem('isAuthenticated') === 'true') {
+  if (isAuthenticated) {
     navigate('/home');
     return null;
   }

@@ -54,6 +54,7 @@ function Login() {
         localStorage.setItem("isAuthenticated", true); //
         // console.log("Loggd in ")
         navigate('/home');
+
       } catch (err) {
         toast.error(err.response?.data || err.message || "An unexpected error occurred.");
       } finally {

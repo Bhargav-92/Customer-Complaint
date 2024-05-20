@@ -1,4 +1,3 @@
-// src/App.js
 import React, { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -15,45 +14,62 @@ import Register from './Pages/Register';
 import Layout from './Components/Admin/AdminLayout/Layout';
 import Nopage from './Pages/Nopage';
 import Profile from './Pages/Profile';
+// import Chatbot from './Components/ComplaintChatBot/ComplaintChatBot';
+// import ProtectedRoutes from './Components/ProtectedRouter/ProtectedRoute';
+
 
 
 function App() {
+
+  {/* Auth Routes */ }
+  const AuthRoutes = (
+    <Routes>
+      <Route path="/" index element={<SignIn />} />
+      <Route path='/register' element={<Register />} />
+    </Routes>
+  )
+
+  {/* Admin routes */ }
+  const admin = (
+    <Routes>
+      <Route path='*' element={<Nopage />} />
+      <Route path="/admin" element={<Layout />}>
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/complaints" element={<Complaints />} />
+      </Route>
+    </Routes>
+  )
+
+  {/* client routes */ }
+  const client = (
+    <Routes>
+      <Route path='/home' element={<Home />} />
+      <Route path='/about' element={<About />} />
+      <Route path='/complaint' element={<Complaint />} />
+      <Route path='/mycomplaint' element={<MyComplaint />} />
+      <Route path='/faq' element={<Faq />} />
+      <Route path='/profile' element={<Profile />} />
+
+    </Routes>
+  )
+
   return (
-    
-      <BrowserRouter>
-        <Routes>
-          {/* Auth Routes */}
-          <Route path="/" element={<SignIn />}  />      
-          <Route path='/register' element={<Register />} />
-
-          {/* Client routes */}
-          <Route path='/' element={<AppWithChatbot />}>
-            <Route path='/home' element={<Home />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/complaint' element={<Complaint />} />
-            <Route path='/mycomplaint' element={<MyComplaint />} />
-            <Route path='/faq' element={<Faq />} />
-            <Route path='/profile' element={<Profile />} />
-          </Route>
-          <Route path='*' element={<Nopage />} />
-
-          {/* Admin routes */}
-          <Route path="/admin" element={<Layout />}>
-            <Route path="/admin/dashboard" element={<Dashboard />} />
-            <Route path="/admin/complaints" element={<Complaints />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
- 
+    <>
+    {
+      
+    }
+    </>
   );
 }
 
 // Higher-order component to wrap Appbar with Chatbot
-const AppWithChatbot = () => (
-  <>
-    <Appbar />
-    {/* <Chatbot /> */}
-  </>
-);
+// const AppWithChatbot = () => (
+//   <>
+//     <Appbar />
+//     <Chatbot />
+//     <ProtectedRoutes />
+//   </>
+
+// );
 
 export default App;

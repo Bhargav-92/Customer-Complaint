@@ -11,9 +11,10 @@ exports.login = async (req, res) => {
             return res.status(404).json({ error: "User not found" });
         }
         const isMatch = await bcrypt.compare(password, user.password);
+        
         if (isMatch) {
             const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '20d' });
-            
+
             //    Change the name from _doc to User
             const userObj = user.toObject();
 
