@@ -14,20 +14,13 @@ const UsersSchema = new mongoose.Schema({
         required: true  // Make the password field required
     },
     phone: Number,
-
-    // diffine the role for different users
-    // role: {
-    //     type: String,
-    //     enum: ['user', 'admin']
-    // },
-    ProfileImage: {
+    role: {
         type: String,
-        default: ''
+        enum: ['user', 'admin'], // Set the available roles
+        default: 'user' // Set a default role if not provided
     },
-    date: { type: Date, default: Date.now },
-    // added time when user created
+    date: { type: Date, default: Date.now }
 });
-
 
 // Pre-save hook to hash the password
 UsersSchema.pre('save', function (next) {

@@ -1,5 +1,5 @@
 const express = require('express');
-const { login, createUser, updateUserProfile, upload } = require('../Controllers/users');
+const { login, createUser, } = require('../Controllers/users');
 const auth = require('../Middleware/authmiddleware');
 
 const router = express.Router();
@@ -16,6 +16,6 @@ router.get('/protected', auth, (req, res) => {
 });
 
 // Update user and add profile image
-router.patch('/users/:id', auth, upload, updateUserProfile);
+// router.patch('/users/:id', auth, upload, updateUserProfile);
 
 module.exports = router;

@@ -1,20 +1,6 @@
 const bcrypt = require('bcrypt');
 const UserModel = require('../models/user');
 const jwt = require('jsonwebtoken');
-const multer = require('multer');
-const path = require('path');
-
-// Configure multer for profile image uploads
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../uploads/Profile_Images'));
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname);
-    }
-});
-
-const upload = multer({ storage: storage }).single('profileImage');
 
 // Login controller
 exports.login = async (req, res) => {
@@ -24,15 +10,19 @@ exports.login = async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compareSync(password, user.password);
 
-        if (isMatch) {
+        console.log("password" , user.password)
+
+        console.log("isMatch" , isMatch)
+
+        if (!isMatch) {
             const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '20d' });
 
             // Remove password from user object before sending
             const userObj = user.toObject();
             delete userObj.password;
-
+            console.log("isMatch", isMatch)
             res.json({ token, user: userObj });
         } else {
             res.status(401).json({ error: "Incorrect password" });
@@ -54,39 +44,6 @@ exports.createUser = async (req, res) => {
         res.json(user);
     } catch (err) {
         res.status(500).json({ error: "Server error" });
-    }
-};
-
-// Profile update for client
-exports.updateUserProfile = async (req, res) => {
-    const { id } = req.params;
-    const { name, phone, password } = req.body;
-    let updateData = { name, phone };
-
-    if (password) {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        updateData.password = hashedPassword;
-    }
-
-    if (req.file) {
-        updateData.profileImage = req.file.path;
-    }
-
-    try {
-        const updatedUser = await UserModel.findByIdAndUpdate(
-            id,
-            updateData,
-            { new: true, runValidators: true }
-        );
-
-        if (!updatedUser) {
-            return res.status(404).json({ error: "User not found" });
-        }
-
-        res.json(updatedUser);
-    } catch (error) {
-        console.error('Error updating profile:', error);
-        res.status(500).json({ message: "Failed to update profile", error: error.message });
     }
 };
 
@@ -114,5 +71,3 @@ exports.adminLogin = async (req, res) => {
     }
 };
 
-// Export the multer upload configuration
-exports.upload = upload;

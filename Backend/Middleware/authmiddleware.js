@@ -10,6 +10,8 @@ const auth = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.SECRET_KEY || process.env.ADMIN_KEY);
         const user = await UserModel.findById(decoded.userId);
+        console.log("user",user)
+        console.log("user Email ", user.email)
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
