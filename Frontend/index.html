@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Rubik Font CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: Rubik;
+        box-sizing: border-box;
+        margin: 0;
+        scroll-behavior: smooth;
+      }
+
+      ::-moz-selection {
+        /* Code for Firefox */
+        color: #fff;
+        background: #19be6f;
+      }
+
+      ::selection {
+        color: #fff;
+        background: #f57c00;
+      }
+
+      html::-webkit-scrollbar {
+        width: 0.8rem;
+      }
+
+      html::-webkit-scrollbar-track {
+        background: #fff;
+      }
+
+      html::-webkit-scrollbar-thumb {
+        background: #f57c00;
+        border-radius: 0.2rem;
+      }
+    </style>
+
+    <title>Customer Compliant</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.jsx"></script>
+  </body>
+</html>
