@@ -39,7 +39,7 @@ function AppContent() {
 
   const AuthRoutes = (
     <Routes>
-      <Route index path="/" element={<SignIn />} />
+      <Route path="/" element={<SignIn />} />
       <Route path="/register" element={<Register />} />
     </Routes>
   );
