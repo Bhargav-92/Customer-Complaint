@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-const LOCAL = process.env.REACT_APP_URL_LOCAL;
-const NETWORK = process.env.REACT_APP_URL_NETWORK;
+
+const LOCAL = import.meta.env.  VITE_APP_URL_LOCAL;
+// const NETWORK = process.env.REACT_APP_URL_NETWORK;
 const BASE_URL = LOCAL
 
 export const axios_instance = axios.create({
