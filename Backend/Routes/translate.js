@@ -1,7 +1,7 @@
-const express = require('express');
-const fetch = require('node-fetch');
-const TextModel = require('../models/TextModel');
-require('dotenv').config();
+import express from 'express';
+import fetch from 'node-fetch';
+import TextModel from '../models/TextModel';
+import { dotenv } from 'dotenv';
 
 const router = express.Router();
 
@@ -34,4 +34,4 @@ router.post('/translate', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

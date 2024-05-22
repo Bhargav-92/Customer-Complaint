@@ -1,6 +1,8 @@
 import React from "react";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
+import Avatar from "../../assets/figma/ProfilePic.png";
+
 const BotRedirect = ({ url, message }) => {
   return (
     <div>
@@ -112,7 +114,7 @@ const ComplaintChatBot = () => {
   return (
     <>
       <ThemeProvider theme={CHATBOT_THEME}>
-        <ChatBot steps={steps} floating={true} />
+        <ChatBot steps={steps} floating={true} botAvatar={Avatar.src} />
       </ThemeProvider>
     </>
   );

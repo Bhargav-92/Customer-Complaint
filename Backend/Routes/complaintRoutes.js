@@ -1,12 +1,8 @@
-const express = require('express');
-const multer = require('multer');
-const path = require('path');
-const {
-    submitComplaint,
-    getAllComplaints,
-    updateComplaintStatus
-} = require('../Controllers/complaint');
-const auth = require('../Middleware/authmiddleware');
+import express from 'express';
+import multer from 'multer';
+import path from 'path';
+import { submitComplaint,getAllComplaints,updateComplaintStatus,getUserComplaint } from '../Controllers/complaint.js';
+import auth from '../Middleware/authmiddleware.js';
 
 const router = express.Router();
 
@@ -40,4 +36,7 @@ router.get('/complaints', auth, getAllComplaints);
 // Update complaint status
 router.patch('/complaints/:id',auth, updateComplaintStatus);
 
-module.exports = router;
+// get all compaint for user side raised by perticular user
+router.get('/complaints/user/:userId', getUserComplaint);
+
+export default router;

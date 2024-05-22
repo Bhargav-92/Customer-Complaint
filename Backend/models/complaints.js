@@ -1,5 +1,5 @@
 // models/complaints.js
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const ComplaintsSchema = new mongoose.Schema({
     firstname: String,
@@ -21,4 +21,5 @@ const ComplaintsSchema = new mongoose.Schema({
 });
 
 const ComplaintsModel = mongoose.model('complaints', ComplaintsSchema);
-module.exports = ComplaintsModel;
+
+export default ComplaintsModel;

@@ -1,7 +1,7 @@
-const ComplaintsModel = require('../models/complaints');
+import ComplaintsModel from "../models/complaints.js";
 
 // Complaint submission controller
-exports.submitComplaint = async (req, res) => {
+export const submitComplaint = async (req, res) => {
     try {
         const newComplaint = new ComplaintsModel({
             ...req.body,
@@ -16,8 +16,8 @@ exports.submitComplaint = async (req, res) => {
     }
 };
 
-// Get all complaints controller
-exports.getAllComplaints = async (req, res) => {
+// Get all complaints  for admin side 
+export const getAllComplaints = async (req, res) => {
     try {
         const complaints = await ComplaintsModel.find({});
         res.json(complaints);
@@ -26,8 +26,29 @@ exports.getAllComplaints = async (req, res) => {
     }
 };
 
+// get all complaints for user side 
+export const  getUserComplaint = async (req, res) => {
+    try {
+        const userId = req.params.userId
+
+        if (!userId) {
+            return res.status(400).json({ message: "User id is required" })
+        }
+        const complaints = await ComplaintsModel.find({ userId })
+        if (complaints.length === 0) {
+            return res.status(404).json({ message: "No complaints found for this user" })
+        }
+        
+        console.log("Complaints",complaints)
+        res.status(200).json(complaints)
+
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
+
 // Update complaint status controller
-exports.updateComplaintStatus = async (req, res) => {
+export const  updateComplaintStatus = async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
 
@@ -49,3 +70,5 @@ exports.updateComplaintStatus = async (req, res) => {
         res.status(500).json({ message: "Failed to update complaint", error: error.message });
     }
 };
+
+

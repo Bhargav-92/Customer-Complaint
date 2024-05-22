@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 const saltRounds = 10;  // Adjust the salt rounds based on your security requirement
 
 const UsersSchema = new mongoose.Schema({
@@ -22,23 +22,21 @@ const UsersSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now }
 });
 
-// Pre-save hook to hash the password
-UsersSchema.pre('save', function (next) {
-    // Check if the password field is modified
-    if (!this.isModified('password')) {
-        return next();
-    }
+// UsersSchema.pre("save", async function (next) {
+//     if (!this.isModified("password")) {
+//       next();
+//     }
+  
+//     const salt = await bcrypt.genSalt(10);
+//     this.password = await bcrypt.hash(this.password, salt);
+//   });
+  
+//   UsersSchema.methods.comparePassword = async function (enteredPassword) {
+//     console.log('enteredPassword', enteredPassword)
+//     return await bcrypt.compare(enteredPassword, this.password);
+//   };
 
-    // Hash the password
-    bcrypt.hash(this.password, saltRounds, (err, hash) => {
-        if (err) {
-            return next(err);
-        }
-        // Replace the plain text password with the hashed one
-        this.password = hash;
-        next();
-    });
-});
 
-const UserModel = mongoose.model("users", UsersSchema);
-module.exports = UserModel;
+export const UserModel = mongoose.model("users", UsersSchema);
+
+
