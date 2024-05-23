@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-const saltRounds = 10;  // Adjust the salt rounds based on your security requirement
 
 const UsersSchema = new mongoose.Schema({
     name: String,
@@ -22,21 +21,14 @@ const UsersSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now }
 });
 
-// UsersSchema.pre("save", async function (next) {
-//     if (!this.isModified("password")) {
-//       next();
-//     }
+UsersSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) {
+        return next();
+    }
   
-//     const salt = await bcrypt.genSalt(10);
-//     this.password = await bcrypt.hash(this.password, salt);
-//   });
-  
-//   UsersSchema.methods.comparePassword = async function (enteredPassword) {
-//     console.log('enteredPassword', enteredPassword)
-//     return await bcrypt.compare(enteredPassword, this.password);
-//   };
-
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+});
 
 export const UserModel = mongoose.model("users", UsersSchema);
-
-

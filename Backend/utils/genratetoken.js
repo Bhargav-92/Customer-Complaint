@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
-
-export const generateToken = (res, userId) => {
-    const token = jwt.sign({ userId }, process.env.SECRET_KEY, {
-        expiresIn: "30d",
-    });
+// get the id of the user if user is admin or client
 
 
-    return token
+
+export const generateToken = (userId, isAdmin) => {
+
+    const secretkey = isAdmin ? process.env.SECRET_KEY : process.env.ADMIN_KEY;
+    const expiresIn = '1d'
+    return jwt.sign({ userId, isAdmin }, secretkey, { expiresIn })
 };
-
 

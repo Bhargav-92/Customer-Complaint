@@ -53,7 +53,7 @@ const Register = () => {
         toast.success('User created successfully!');
       } catch (err) {
         console.error(err);
-        toast.error('Failed to create user. Please try again.');
+        toast.error(err);
       } 
     }
   });
