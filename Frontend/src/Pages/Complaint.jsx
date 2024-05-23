@@ -97,6 +97,7 @@ const Complaint = () => {
               />
             </Grid>
             <Grid item md={6} xs={12}>
+            <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 id="lastname"
