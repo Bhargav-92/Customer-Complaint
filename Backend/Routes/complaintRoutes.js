@@ -1,10 +1,14 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { submitComplaint,getAllComplaints,updateComplaintStatus,getUserComplaint } from '../Controllers/complaint.js';
 import auth from '../Middleware/authmiddleware.js';
+import usermiddleware from '../Middleware/authmiddleware.js';
 
 const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -28,15 +32,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Complaint submission endpoint
-router.post('/complaints',auth, upload.single('document'), submitComplaint);
+router.post('/complaints',usermiddleware, upload.single('document'), submitComplaint);
 
-// Get all complaints
-router.get('/complaints', auth, getAllComplaints);
 
-// Update complaint status
-router.patch('/complaints/:id',auth, updateComplaintStatus);
 
 // get all compaint for user side raised by perticular user
-router.get('/complaints/user/:userId', getUserComplaint);
+router.get('/user/:userId/complaints',usermiddleware, getUserComplaint);
 
 export default router;
