@@ -34,7 +34,9 @@ export const  getUserComplaint = async (req, res) => {
         if (!userId) {
             return res.status(400).json({ message: "User id is required" })
         }
+        console.log(userId)
         const complaints = await ComplaintsModel.find({ userId })
+        console.log(complaints)
         if (complaints.length === 0) {
             return res.status(404).json({ message: "No complaints found for this user" })
         }

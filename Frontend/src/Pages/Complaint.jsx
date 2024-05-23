@@ -43,16 +43,18 @@ const Complaint = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
+        const user = JSON.parse(localStorage.getItem('user'))
         const formData = new FormData();
         for (const key in values) {
           formData.append(key, values[key]);
         }
+        formData.append('userId', user._id)
         formData.append('document', selectedFile);
 
         const response = await axios.post('http://localhost:4000/api/complaints', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
-             'Authorization': "Bearer "+ localStorage.getItem('token')
+            'Authorization': "Bearer " + localStorage.getItem('token')
           }
         });
         console.log(response);
@@ -94,7 +96,7 @@ const Complaint = () => {
                 helperText={formik.touched.firstname && formik.errors.firstname}
               />
             </Grid>
-             <Grid item md={6} xs={12}>
+            <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 id="lastname"
