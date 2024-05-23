@@ -3,8 +3,7 @@ import Box from '@mui/material/Box';
 import { useCollapse } from 'react-collapsed';
 import { Button, Card, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import Img from '../../assets/logo/Customer_Complaint.png';
-import { complaintsData } from './ComplaintDetails';
-
+import { axios_instance } from '../../endPoints/baseURL';
 
 export default function PendingRequests() {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
@@ -12,27 +11,35 @@ export default function PendingRequests() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Load complaints data from local JSON file
-    const fetchData = async () => {
-      try {
-        const data = await complaintsData;
-  
-        // Filter complaints based on status
-        const filteredComplaints = data.filter(complaint => complaint.status === 'Pending');
-  
-        setComplaints(filteredComplaints);
-      } catch (error) {
-        setError(error);
-      }
-    };
-  
-    fetchData();
-  }, []);
+    const token = localStorage.getItem('token');
+    if (token) {
+      const AxiosConfig = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      axios_instance
+        .get('/complaints?status=pending', AxiosConfig)
+        .then((response) => {
+          if (response.data.data.length > 0) {
+            setComplaints(response.data.data);
+          } else {
+            console.log('No Complaints Found');
+            setComplaints([]);
+          }
+        })
+        .catch((error) => {
+          setError(error);
+        });
+    }
+  }, []); // <- This closing bracket was missing
 
   return (
-    <Box sx={{ minHeight: 180, flexGrow: 1, maxWidth: 300}}>
+    <Box sx={{ minHeight: 180, flexGrow: 1, maxWidth: 300 }}>
       {complaints.map(complaint => (
-        <div key={complaint.id} style={{marginTop:'1rem'}}>
+        <div key={complaint.id} style={{ marginTop: '1rem' }}>
           <div className="collapsiale">
             <div className="header" {...getToggleProps()}>
               <Card elevation={6} sx={{ width: { md: '50rem' }, xs: '30rem', border: '2px solid #F57C00', borderRadius: '1rem' }}>
@@ -90,7 +97,7 @@ export default function PendingRequests() {
                             <TableCell align="left">Complaint Type  :-</TableCell>
                             <TableCell align="left">{complaint.type}</TableCell>
                           </TableRow>
-                          {/* Add other rows for other data */}
+                        
                         </TableBody>
                       </Table>
                     </TableContainer>

@@ -1,5 +1,6 @@
 import ComplaintsModel from "../models/complaints.js";
 
+
 // Complaint submission controller
 export const submitComplaint = async (req, res) => {
     try {
