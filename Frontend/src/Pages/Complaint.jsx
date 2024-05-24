@@ -220,6 +220,7 @@ const Complaint = () => {
                   name="details"
                   label="Complaint Details"
                   multiline
+                
                   rows={4}
                   value={formik.values.details}
                   onChange={formik.handleChange}

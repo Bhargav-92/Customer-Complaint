@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 import Counter from '../CounterUpPage/Counter';
 import { Link } from 'react-router-dom';
@@ -6,26 +6,26 @@ import { Link } from 'react-router-dom';
 const AboutLanding = () => {
     return (
         <>
-            <Grid container md={12} justifyContent={'center'} alignItems={'center'} p={15}>
-                <Grid item md={4}>
-                    <Stack direction={'column'} spacing={2}>
+            <Grid container justifyContent='center' alignItems='center' p={{ xs: 3, md: 15 }}>
+                <Grid item xs={12} md={4}>
+                    <Stack direction='column' spacing={2}>
                         {/* <Typography variant="h5" >
                             Work progress
                         </Typography> */}
-                        <Typography variant='h2' fontWeight={600} color={'#F57C00'} paddingTop={4}>
+                        <Typography variant='h2' fontWeight={600} color='#F57C00' paddingTop={4}>
                             How it Works
                         </Typography>
                     </Stack>
                 </Grid>
-                <Grid item md={6} spacing={10}>
-                    <Typography marginLeft={8} marginTop={5}>
-                         Register yourself on the platform using register form. 
-                         Login With Credentails and on the dashboard click on the file "Complaint" button. 
-                         Fill the complaint form and submit it.  
-                         You will get a confirmation email and your complaint will be registered. <br />
+                <Grid item xs={12} md={6}>
+                    <Typography marginLeft={{ xs: 0, md: 8 }} marginTop={5}>
+                        Register yourself on the platform using register form. 
+                        Login With Credentials and on the dashboard click on the "File Complaint" button. 
+                        Fill the complaint form and submit it.  
+                        You will get a confirmation email and your complaint will be registered. <br />
                     </Typography>
                 </Grid>
-                <Grid item md={2} p={10}>
+                <Grid item xs={12} md={2} p={{ xs: 2, md: 10 }} textAlign={{ xs: 'center', md: 'left' }}>
                     <Button variant='contained' sx={{
                         marginTop: '40px',
                         background: '#F57C00',
@@ -36,7 +36,7 @@ const AboutLanding = () => {
                             color: '#000'
                         }
                     }}>
-                        <Link to={'/complaint'} style={{ outline: 'none', textDecoration: 'none', color: '#fff', fontWeight: '400', verticalAlign: 'text-bottom' }}>
+                        <Link to='/complaint' style={{ outline: 'none', textDecoration: 'none', color: '#fff', fontWeight: '400', verticalAlign: 'text-bottom' }}>
                             Complaint
                         </Link>
                     </Button>
@@ -48,7 +48,7 @@ const AboutLanding = () => {
                 <Counter />
             </Box>
         </>
-    )
+    );
 }
 
-export default AboutLanding
+export default AboutLanding;
