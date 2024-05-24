@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Box, Grid, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button } from '@mui/material';
+import { Box, Grid, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button, IconButton } from '@mui/material';
 import Footer from '../Components/Footer/Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useFormik } from 'formik';
 import UploadIcon from '@mui/icons-material/Upload';
+import CancelIcon from '@mui/icons-material/Cancel';
 import * as Yup from 'yup';
 
 const Complaint = () => {
@@ -53,7 +54,7 @@ const Complaint = () => {
         const response = await axios.post('http://localhost:4000/api/complaints', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
-             'Authorization': "Bearer "+ localStorage.getItem('token')
+            'Authorization': "Bearer " + localStorage.getItem('token')
           }
         });
         console.log(response);
@@ -72,6 +73,12 @@ const Complaint = () => {
       setSelectedFile(file);
       formik.setFieldValue('document', file.name);
     }
+  };
+
+  // Function to handle canceling the selected file
+  const handleCancelChange = () => {
+    setSelectedFile(null);
+    formik.setFieldValue('document', '');
   };
 
   return (
@@ -95,7 +102,7 @@ const Complaint = () => {
                 helperText={formik.touched.firstname && formik.errors.firstname}
               />
             </Grid>
-             <Grid item md={6} xs={12}>
+            <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 id="lastname"
@@ -220,6 +227,7 @@ const Complaint = () => {
                   name="details"
                   label="Complaint Details"
                   multiline
+
                   rows={4}
                   value={formik.values.details}
                   onChange={formik.handleChange}
@@ -235,7 +243,17 @@ const Complaint = () => {
                 <Typography pl={1}>Upload File</Typography>
                 <input type="file" hidden onChange={handleFileChange} />
               </Button>
-              {selectedFile && <Typography p={1} color={'#F57C00'}>{selectedFile.name}</Typography>}
+
+              {/* display selected file */}
+              {selectedFile &&
+                <Box sx={{display:'flex', alignItems:'center'}}>
+                  <Typography p={1} color={'#F57C00'}>{selectedFile.name}</Typography>
+                  <IconButton onClick={handleCancelChange} color="secondary">
+                    <CancelIcon sx={{ color: '#000' }} />
+                  </IconButton>
+                </Box>
+              }
+
               <Typography p={1} color={'text.secondary'} fontWeight={'700'}>User can upload a document here</Typography>
             </Grid>
             <Grid item md={12} xs={12} textAlign="center">

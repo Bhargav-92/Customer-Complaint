@@ -100,7 +100,7 @@ const Profile = () => {
                     <form onSubmit={handleUpdate}>
                         <Stack direction={'column'} spacing={5}>
                             <InputField label={'Name'} placeholder={'Enter First Name'} isRequired={true} name="Name" value={formData.firstName} onChange={handleChange} />
-                            <InputField label={'Email Id'} placeholder={'Enter Email Id'} isRequired={true} name="email" value={formData.email} onChange={handleChange} readOnly={true} sx={{ background: 'grey', '&:input': { background: 'grey', border: 'none' } }} />
+                            <InputField label={'Email Id'} placeholder={'Enter Email Id'} isRequired={true} name="email" value={formData.email} onChange={handleChange} readOnly={true} sx={{ background: '#777'}} />
                             <InputField label={'Phone'} placeholder={'Enter Phone'} isRequired={true} name="phone" value={formData.phone} onChange={handleChange} />
                             <InputField label={'New Password'} placeholder={'Enter New Password'} isRequired={true} name="newPassword" value={formData.newPassword} onChange={handleChange} />
                             <InputField label={'Confirm Password'} placeholder={'Confirm New Password'} isRequired={true} name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
