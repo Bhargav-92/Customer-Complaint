@@ -1,22 +1,40 @@
-import { Box, Stack, Typography } from '@mui/material'
-import React from 'react'
-import './detailsStyle.css'
+import { Box, Stack, Typography } from '@mui/material';
+import React from 'react';
+import './detailsStyle.css';
 
-const ComplaintDetials = () => {
+const ComplaintDetails = () => {
     return (
-            <Box justifyContent={'center'} alignItems={'center'} display={'flex'} p={10}>
-                <Stack direction={'column'}>
-                    <div className='BackgroundImage'>
-                        <Typography variant='h3' fontWeight={600} letterSpacing={1} color={'#fff'}  pl={6} width={'46rem'}>
-                            One Website, One Platform,
-                            <p style={{
-                                marginTop: '10px'
-                            }}>Many Government Services</p>
+        <Box justifyContent='center' alignItems={'center'}  display='flex' >
+            <Stack direction='column' alignItems='center' width='100%'>
+                <Box 
+                    className='BackgroundImage'
+                    sx={{
+                        width: '100wh',
+                        height: '500px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundAttachment: { xs: 'scroll', md: 'fixed' }
+                    }}
+                >
+                    <Typography 
+                        variant='h3' 
+                        fontWeight={600} 
+                        letterSpacing={1} 
+                        color='#fff'  
+                        px={{ xs: 2, md: 6 }} 
+                        width={{ xs: '90%', sm: '80%', md: '46rem' }}
+                        textAlign='center'
+                    >
+                        One Website, One Platform,
+                        <Typography component='p' variant='h3' sx={{ marginTop: '10px' }}>
+                            Many Government Services
                         </Typography>
-                    </div>
-                </Stack>
-            </Box>
-    )
+                    </Typography>
+                </Box>
+            </Stack>
+        </Box>
+    );
 }
 
-export default ComplaintDetials
+export default ComplaintDetails;
