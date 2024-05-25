@@ -21,7 +21,7 @@ import Loader from "./Components/Loader/Loader";
 import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
 import AuthLayout from "./layouts/AuthLayout";
-import Sidebar from "./Components/Admin/Sidebar/Sidebar";
+import Sidebar from "./Components/Admin/AdminComponents/Sidebar/Sidebar";
 
 function App() {
 
@@ -57,6 +57,7 @@ function AppContent() {
   const Admin = (
     <Routes>
       <Route path="/dashboard" element={<Dashboard />} />
+      
     </Routes>
   );
 
@@ -70,6 +71,7 @@ function AppContent() {
         <Route path="/mycomplaint" element={<MyComplaint />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/profile" element={<Profile />} />
+        
       </Route>
     </Routes>
   );

@@ -1,10 +1,13 @@
 import React from "react"
+import Sidebar from "../Components/Admin/AdminComponents/Sidebar/Sidebar"
 
 export default function AdminLayout({children}) {
     return (
         <div>
-            <h1>Hello admin</h1>
-            {children}
+            <Sidebar/>
+
+            {/* <h1>Hello admin</h1>
+            {children} */}
         </div>
     )
 }
