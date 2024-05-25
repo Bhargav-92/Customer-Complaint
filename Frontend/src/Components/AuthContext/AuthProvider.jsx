@@ -3,38 +3,50 @@ import AuthContext from './AuthContext';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook for redirection
 
 const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState("");
-
-    // get the key from localstorage for login 
-    useEffect(() => {
-        const loggedInRole = localStorage.getItem('loggedIn');
-        setIsAuthenticated(loggedInRole);
-    }, []);
-
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [role, setRole] = useState("");
     const navigate = useNavigate(); // Initialize useNavigate hook for redirection
 
-    // set the state from false to true for login
-    const login = (role) => {
-        setIsAuthenticated(role);
-        localStorage.setItem("loggedIn", role);
+    useEffect(() => {
+        const isAuthenticated = localStorage.getItem('isAuthenticated');
+        const role = localStorage.getItem('role');
 
-        // Redirect based on user role
-        if (role === 'admin') {
-            navigate('/admin');
-        } else {
+        if (isAuthenticated && role) {
+            setIsAuthenticated(true);
+            setRole(role);
+        }
+    }, []);
+
+    const login = (token, user) => {
+        setIsAuthenticated(true);
+        setRole(user.role);
+        localStorage.setItem('token', token); 
+        localStorage.setItem('user', JSON.stringify(user)); 
+        localStorage.setItem("isAuthenticated", true);
+        localStorage.setItem('role', user.role)
+
+        if(user.role === "admin"){
+            navigate('/dashboard');
+        }
+
+        if(user.role === "user"){
             navigate('/home');
         }
     }
 
     // set the state from true to false for logout
     const logout = () => {
-        setIsAuthenticated("");
-        localStorage.removeItem("loggedIn");
+        setIsAuthenticated(false);
+        setRole("");
+        localStorage.removeItem('token');
+        localStorage.removeItem('user')
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem("role");
         navigate('/login'); // Redirect to login page after logout
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout , role}}>
             {children}
         </AuthContext.Provider>
     );

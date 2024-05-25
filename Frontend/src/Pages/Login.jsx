@@ -47,20 +47,9 @@ function Login() {
       try {
         const response = await axios_instance.post("/login", values);
         const { token, user } = response.data;
-        const { role } = user; // Assuming the user's role is included in the response
-        login(role); // Passing the role to the login function
-  
+        login(token, user); // Passing the role to the login function
         toast.success("Logged in successfully!");
-        localStorage.setItem('token', token); 
-        localStorage.setItem('user', JSON.stringify(user)); 
-        localStorage.setItem("isAuthenticated", true);
-  
-        // Redirect based on user role
-        if (role === 'admin') {
-          navigate('/admin'); // Redirect admin to admin routes
-        } else {
-          navigate('/home'); // Redirect user to user routes
-        }
+
       } catch (err) {
         toast.error(err.response?.data || err.message || "An unexpected error occurred.");
       } finally {
