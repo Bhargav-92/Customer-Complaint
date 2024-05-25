@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemText, ListItemIcon, Divider, IconButton, Toolbar, Box, Hidden, Avatar, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Drawer, List, ListItem, ListItemText, ListItemIcon, Divider, IconButton, Toolbar, Box, Hidden, Avatar, Typography, AppBar } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import PieChartIcon from '@mui/icons-material/PieChart';
@@ -17,23 +17,48 @@ const Sidebar = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  // Function to handle keydown event for the Shift key combinations
+  const handleKeyDown = (event) => {
+    if (event.shiftKey && event.key === '>') {
+      setOpen(true);
+    } else if (event.shiftKey && event.key === '<') {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener for keydown event
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   const menuItems = [
-    { text: 'Dashboard', icon: <DashboardIcon /> },
-    { text: 'Line Chart', icon: <ShowChartIcon /> },
-    { text: 'Pie Chart', icon: <PieChartIcon /> },
-    { text: 'Profile', icon: <AccountCircleIcon /> },
-    { text: 'FAQ', icon: <HelpIcon /> },
-    { text: 'All users', icon: <PeopleIcon /> },
-    { text: 'All Complaints', icon: <ReportIcon /> },
+    { text: 'Dashboard', icon: <DashboardIcon sx={{ color: '#000' }} /> },
+    { text: 'Line Chart', icon: <ShowChartIcon sx={{ color: '#000' }} /> },
+    { text: 'Pie Chart', icon: <PieChartIcon sx={{ color: '#000' }} /> },
+    { text: 'Profile', icon: <AccountCircleIcon sx={{ color: '#000' }} /> },
+    { text: 'FAQ', icon: <HelpIcon sx={{ color: '#000' }} /> },
+    { text: 'All users', icon: <PeopleIcon sx={{ color: '#000' }} /> },
+    { text: 'All Complaints', icon: <ReportIcon sx={{ color: '#000' }}/> },
   ];
 
   const drawer = (
     <div>
-      <Toolbar>
-        <IconButton onClick={() => setOpen(!open)} sx={{ mr: 1 }}>
-          <MenuIcon sx={{ color: '#f57c00', textDecoration: 'none', '&:hover': { outline: 'none', textDecoration: 'none', cursor: 'pointer' } }} />
-        </IconButton>
-      </Toolbar>
+      <AppBar position="fixed" sx={{ backgroundColor: 'white', color: 'black', borderBottom: '1px solid #777', boxShadow: 'none' }}>
+        <Toolbar>
+          <IconButton onClick={() => setOpen(!open)}>
+            <MenuIcon sx={{ color: '#f57c00' }} />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Customer Complaint Admin
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Toolbar />
       <Divider />
       {open && (
         <Box sx={{ textAlign: 'center', p: 2 }}>
@@ -41,13 +66,15 @@ const Sidebar = () => {
           <Typography variant="body1">Username</Typography>
         </Box>
       )}
-      <Divider />
-      <List>
+      <Divider sx={{ border: '1px dashed #e67e22' }} />
+      <List sx={{ p: open ? 1 : 0 }}>
         {menuItems.map((item, index) => (
           <React.Fragment key={index}>
-            <ListItem 
-              button 
+            <ListItem
+              button
               sx={{
+                py: open ? 1 : 0.5,
+                px: open ? 2 : 1,
                 '&:hover': {
                   backgroundColor: 'orange',
                   color: 'white',
@@ -57,10 +84,10 @@ const Sidebar = () => {
                 }
               }}
             >
-              <ListItemIcon>
+              <ListItemIcon sx={{ minWidth: open ? 40 : 20 }}>
                 {item.icon}
               </ListItemIcon>
-              <ListItemText primary={item.text} />
+              {open && <ListItemText primary={item.text} />}
             </ListItem>
             <Divider />
           </React.Fragment>
@@ -70,14 +97,14 @@ const Sidebar = () => {
   );
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', width: 'auto' }}>
       <Hidden mdUp implementation="css">
         <IconButton
           color="inherit"
           aria-label="open drawer"
           edge="start"
           onClick={handleDrawerToggle}
-          sx={{ ml: 1, mt: 2, color: 'black' }}
+          sx={{ ml: 2, mt: 2, color: 'black' }}
         >
           <MenuIcon />
         </IconButton>
@@ -90,7 +117,7 @@ const Sidebar = () => {
           }}
           sx={{
             display: { xs: 'block', md: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+            '& .MuiDrawer-paper': { width: 200 },
           }}
         >
           {drawer}
@@ -101,9 +128,9 @@ const Sidebar = () => {
           variant="permanent"
           open={open}
           sx={{
-            width: open ? 240 : 60,
+            width: open ? 200 : 60,
             flexShrink: 0,
-            [`& .MuiDrawer-paper`]: { width: open ? 240 : 60, transition: 'width 0.2s' },
+            [`& .MuiDrawer-paper`]: { width: open ? 200 : 60, transition: 'width 0.2s' },
           }}
         >
           {drawer}

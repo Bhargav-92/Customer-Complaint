@@ -55,6 +55,7 @@ function AppContent() {
   const Admin = (
     <Routes>
       <Route path="/dashboard" element={<Dashboard />} />
+      
     </Routes>
   );
 
@@ -68,6 +69,7 @@ function AppContent() {
         <Route path="/mycomplaint" element={<MyComplaint />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/profile" element={<Profile />} />
+        
       </Route>
     </Routes>
   );
