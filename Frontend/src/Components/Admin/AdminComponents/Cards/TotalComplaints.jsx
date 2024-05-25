@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
-
+import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
 
 const hoverEffect = {
   background: '#fff',
@@ -19,7 +19,7 @@ const hoverEffect = {
     color: '#fff',
   }
 }
-export default function InforCard() {
+export default function TotalComplaints() {
   const theme = useTheme();
 
   return (
@@ -27,30 +27,25 @@ export default function InforCard() {
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">
-            Pending Complaints
+            Total Complaints
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div" >
             {'Complaints'}
           </Typography>
         </CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-          <IconButton aria-label="previous">
-            {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-          </IconButton>
-          <IconButton aria-label="play/pause">
-            <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-          </IconButton>
-          <IconButton aria-label="next">
-            {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-          </IconButton>
-        </Box>
       </Box>
-      <CardMedia
-        component="img"
-        sx={{ width: 151 }}
-        image="/static/images/cards/live-from-space.jpg"
-        alt="Live from space album cover"
-      />
+      <CardMedia sx={{
+        color:'crimson',
+        width: 151,
+        height: 151,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <WarningAmberRoundedIcon sx={{
+          fontSize: '4rem',
+        }} />
+      </CardMedia>
     </Card>
   );
 }
