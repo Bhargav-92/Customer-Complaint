@@ -17,13 +17,12 @@ import Profile from "./Pages/Profile";
 import Register from "./Pages/Register";
 import { useContext } from "react";
 import { useState } from "react";
-import Topbar from "./Components/Admin/scenes/global/Topbar";
-import ProSideBar from "./Components/Admin/scenes/global/ProSideBar";
-import Dashboard from "./Components/Admin/scenes/dashboard/index";
+
 import Loader from "./Components/Loader/Loader";
 import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
 import AuthLayout from "./layouts/AuthLayout";
+import Sidebar from "./Components/Admin/Sidebar/Sidebar";
 
 function App() {
 
@@ -38,7 +37,7 @@ function AppContent() {
   const location = useLocation()
   const navigate = useNavigate()
   const { isAuthenticated, role } = useContext(AuthContext);
-  const [theme, colorMode] = useMode();
+
   const [isSidebar, setIsSidebar] = useState(true);
   console.log('isAuthenticated', isAuthenticated)
   console.log('role', role)
@@ -53,7 +52,7 @@ function AppContent() {
   const AuthRoutes = (
     <>
       <Routes>
-        <Route path="/" element={<SignIn />}/>
+        <Route path="/" element={<Sidebar />}/>
         <Route path="/register" element={<Register />} />
       </Routes>
     </>
@@ -82,7 +81,8 @@ function AppContent() {
       //   </ThemeProvider>
       // </ColorModeContext.Provider>
       <Routes>
-      <Route path="/dashboard" element={<Dashboard />}/>
+      {/* <Route path="/dashboard" element={<Dashboard />}/> */}
+    
       
     </Routes>
   );
@@ -97,6 +97,7 @@ function AppContent() {
           <Route path="/mycomplaint" element={<MyComplaint />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/sidebar" element={<Sidebar />} />
         </Route>
       </Routes>
   );
