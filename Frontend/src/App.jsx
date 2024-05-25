@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import Appbar from "./Components/Appbar/Appbar";
 import AuthContext from "./Components/AuthContext/AuthContext";
 import AuthProvider from "./Components/AuthContext/AuthProvider";
 import ComplaintChatBot from "./Components/ComplaintChatBot/ComplaintChatBot";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import About from "./Pages/About";
 import Complaint from "./Pages/Complaint";
 import Faq from "./Pages/Faq";
@@ -16,12 +15,11 @@ import Nopage from "./Pages/Nopage";
 import Profile from "./Pages/Profile";
 import Register from "./Pages/Register";
 import { useContext } from "react";
-import Dashboard from "./Components/Admin/Dashboard/Dashboard";
+import Dashboard from "./Components/Admin/AdminComponents/Dashboard/Dashboard";
 import Loader from "./Components/Loader/Loader";
 import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
 import AuthLayout from "./layouts/AuthLayout";
-import Sidebar from "./Components/Admin/AdminComponents/Sidebar/Sidebar";
 
 function App() {
 
