@@ -5,7 +5,10 @@ export default defineConfig(() => {
   return {
     build: {
       outDir: 'build',
-    },
     plugins: [react()],
+    server:{
+      host: true
+    },
+    },
   };
 });

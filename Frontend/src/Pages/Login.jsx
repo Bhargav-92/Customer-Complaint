@@ -45,17 +45,22 @@ function Login() {
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const response = await axios_instance.post("/login", values)
+        const response = await axios_instance.post("/login", values);
         const { token, user } = response.data;
-        login('user')
-        console.log(response)
+        const { role } = user; // Assuming the user's role is included in the response
+        login(role); // Passing the role to the login function
+  
         toast.success("Logged in successfully!");
         localStorage.setItem('token', token); 
         localStorage.setItem('user', JSON.stringify(user)); 
-        // Store the token in localStorage
-        localStorage.setItem("isAuthenticated", true); //
-        navigate('/home');
-
+        localStorage.setItem("isAuthenticated", true);
+  
+        // Redirect based on user role
+        if (role === 'admin') {
+          navigate('/admin'); // Redirect admin to admin routes
+        } else {
+          navigate('/home'); // Redirect user to user routes
+        }
       } catch (err) {
         toast.error(err.response?.data || err.message || "An unexpected error occurred.");
       } finally {
@@ -63,12 +68,34 @@ function Login() {
       }
     }
   });
+  
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-      <Grid container p={12} alignItems={'center'} justifyContent={'center'} sx={{ marginLeft: { md: 'none', xs: '-30px' } }}>
-        <Grid item md={5} xs={12} sx={{ ...inputStyles }}>
+      <ToastContainer 
+        position="top-right" 
+        autoClose={3000} 
+        hideProgressBar={false} 
+        newestOnTop={false} 
+        closeOnClick 
+        rtl={false} 
+        pauseOnFocusLoss 
+        draggable 
+        pauseOnHover 
+      />
+     <ToastContainer 
+        position="top-right" 
+        autoClose={5000} 
+        hideProgressBar={false} 
+        newestOnTop={false} 
+        closeOnClick 
+        rtl={false} 
+        pauseOnFocusLoss 
+        draggable 
+        pauseOnHover 
+      />
+      <Grid container alignItems={'center'} justifyContent={'center'} mt={{ xs: 5, md: 10 }} spacing={2}>
+        <Grid item md={5} xs={12} sx={{ ...inputStyles, ml: { md: 2, xs: 0 }, px: { xs: 2, md: 0 } }}>
           <Box sx={{ padding: { md: 'none', xs: '30px' } }}>
             <Typography variant='h4' fontWeight={700}>Sign In</Typography>
             <Typography fontWeight={400} color={'#666'} marginTop={'10px'}>We Provide Seamless Complaint Register Portal</Typography>
@@ -109,7 +136,7 @@ function Login() {
           </Box>
         </Grid>
         <Grid item md={5} sx={{ display: { md: 'block', xs: 'none', sm: 'none' } }}>
-          <img src={SignImg} alt="Sign In" style={{ height: 'auto', width: '600px' }} />
+          <img src={SignImg} alt="Sign In" style={{ height: 'auto', width: '100%', maxWidth: '600px' }} />
         </Grid>
       </Grid>
     </>

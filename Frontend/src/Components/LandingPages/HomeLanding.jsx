@@ -22,7 +22,8 @@ const HomeLanding = () => {
                 xs: '5px'
             },
             display: 'flex',
-            flexDirection: 'row'
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: { xs: 'center', md: 'flex-start' }
         }}>
             <Grid item md={6}>
                 <Box>
@@ -52,7 +53,7 @@ const HomeLanding = () => {
                             </Typography>
                         </Typography>
                     </Box>
-                    <Stack direction={'row'} mt={3} spacing={5}>
+                    <Stack direction={'row'} mt={{ xs: 3, md: 0 }} spacing={5}>
                         <Link to={'/complaint'} styles={{ textDecoration: 'none', color: '#000' }}>
                             <Button variant='contained' sx={{ ...btnStyle }}>
                                 Complaint
@@ -66,13 +67,8 @@ const HomeLanding = () => {
                     </Stack>
                 </Box>
             </Grid>
-            <Grid item md={3}>
-                <Box sx={{
-                    display: {
-                        md: 'block',
-                        xs: 'none'
-                    }
-                }}>
+            <Grid item md={6} sx={{ display: { md: 'block', xs: 'none' } }}>
+                <Box>
                     <img src={HomePng} className={styles.HomeImage} alt={'Home'} height={'auto'} width={500}  />
                 </Box>
             </Grid>

@@ -34,7 +34,7 @@
     "yup": "^1.4.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "set \"VITE_CJS_TRACE=true\" && vite build",
     "preview": "vite preview"
   },

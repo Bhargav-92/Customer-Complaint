@@ -10,7 +10,6 @@ import Header from "../../components/Header";
 import LineChart from "../../components/LineChart";
 
 
-
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);

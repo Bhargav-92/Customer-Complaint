@@ -61,10 +61,20 @@ const Register = () => {
   // If user is already authenticated, redirect to home page
   return (
     <>
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-      <Grid container p={9} alignItems={'center'} justifyContent={'center'}>
-        <Grid item md={6} sx={{ display: { md: 'block', xs: 'none', sm: 'none' } }}>
-          <img src={signupimg} alt="Sign Up" style={{height: 'auto', width: '500px'}} />
+      <ToastContainer 
+        position="top-right" 
+        autoClose={5000} 
+        hideProgressBar={false} 
+        newestOnTop={false} 
+        closeOnClick 
+        rtl={false} 
+        pauseOnFocusLoss 
+        draggable 
+        pauseOnHover 
+      />
+      <Grid container alignItems={'center'} justifyContent={'center'} p={{ xs: 2, md: 9 }} spacing={2}>
+        <Grid item md={6} xs={12} sx={{ display: { md: 'block', xs: 'none', sm: 'none' } }}>
+          <img src={signupimg} alt="Sign Up" style={{ height: 'auto', width: '100%' }} />
         </Grid>
         <Grid item md={5} xs={12} sx={{ ...inputStyles }}>
           <Box sx={{ padding: { md: 'none', xs: '30px' } }}>
@@ -87,6 +97,7 @@ const Register = () => {
                   onBlur={formik.handleBlur}
                   error={formik.touched.name && Boolean(formik.errors.name)}
                   helperText={formik.touched.name && formik.errors.name}
+                  fullWidth
                 />
                 <TextField
                   required
@@ -99,6 +110,7 @@ const Register = () => {
                   onBlur={formik.handleBlur}
                   error={formik.touched.email && Boolean(formik.errors.email)}
                   helperText={formik.touched.email && formik.errors.email}
+                  fullWidth
                 />
                 <TextField
                   required
@@ -111,6 +123,7 @@ const Register = () => {
                   onBlur={formik.handleBlur}
                   error={formik.touched.phone && Boolean(formik.errors.phone)}
                   helperText={formik.touched.phone && formik.errors.phone}
+                  fullWidth
                 />
                 <TextField
                   required
@@ -123,6 +136,7 @@ const Register = () => {
                   onBlur={formik.handleBlur}
                   error={formik.touched.password && Boolean(formik.errors.password)}
                   helperText={formik.touched.password && formik.errors.password}
+                  fullWidth
                 />
                 <TextField
                   required
@@ -135,10 +149,11 @@ const Register = () => {
                   onBlur={formik.handleBlur}
                   error={formik.touched.conPass && Boolean(formik.errors.conPass)}
                   helperText={formik.touched.conPass && formik.errors.conPass}
+                  fullWidth
                 />
                 <Button type="submit" style={ButtonStyle} disabled={formik.isSubmitting}>Submit</Button>
-                <Stack direction={'row'} spacing={4} style={{alignSelf: 'center'}}>
-                  <Typography style={{ color: '#444',  }}>
+                <Stack direction={'row'} spacing={4} justifyContent="center">
+                  <Typography style={{ color: '#444' }}>
                     Already Have An Account ?{' '}
                     <Link to='/' style={{ textDecoration: 'none', color: '#222' }}>
                       Sign In

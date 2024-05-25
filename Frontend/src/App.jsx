@@ -72,8 +72,6 @@ function AppContent() {
 
   const AuthRoutes = (
     <>
-
-    
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
@@ -82,7 +80,6 @@ function AppContent() {
   );
 
   const Admin = (
-
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
