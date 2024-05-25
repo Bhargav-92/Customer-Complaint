@@ -8,6 +8,8 @@ import HelpIcon from '@mui/icons-material/Help';
 import PeopleIcon from '@mui/icons-material/People';
 import ReportIcon from '@mui/icons-material/Report';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link, Outlet } from 'react-router-dom';
+import SidebarLink from './SidebarLink';
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -37,58 +39,73 @@ const Sidebar = () => {
   }, []);
 
   const menuItems = [
-    { text: 'Dashboard', icon: <DashboardIcon sx={{ color: '#000' }} /> },
+    { text: 'Dashboard', icon: <DashboardIcon sx={{ color: '#000', }} /> },
     { text: 'Line Chart', icon: <ShowChartIcon sx={{ color: '#000' }} /> },
     { text: 'Pie Chart', icon: <PieChartIcon sx={{ color: '#000' }} /> },
     { text: 'Profile', icon: <AccountCircleIcon sx={{ color: '#000' }} /> },
-    { text: 'FAQ', icon: <HelpIcon sx={{ color: '#000' }} /> },
+    { text: 'FAQ', icon: <HelpIcon sx={{ color: '#000' }} />, path: '/admin/faq' },
     { text: 'All users', icon: <PeopleIcon sx={{ color: '#000' }} /> },
-    { text: 'All Complaints', icon: <ReportIcon sx={{ color: '#000' }}/> },
+    { text: 'All Complaints', icon: <ReportIcon sx={{ color: '#000' }} /> },
   ];
 
   const drawer = (
     <div>
-      <AppBar position="fixed" sx={{ backgroundColor: 'white', color: 'black', borderBottom: '1px solid #777', boxShadow: 'none' }}>
+      <AppBar position="fixed" sx={{ backgroundColor: 'white', color: 'black', borderBottom: '1px solid #AAAA', boxShadow: 'none' }}>
         <Toolbar>
           <IconButton onClick={() => setOpen(!open)}>
             <MenuIcon sx={{ color: '#f57c00' }} />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} pl={3}>
             Customer Complaint Admin
           </Typography>
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <Divider />
+
       {open && (
         <Box sx={{ textAlign: 'center', p: 2 }}>
           <Avatar alt="Profile Picture" src="" sx={{ width: 60, height: 60, mx: 'auto', my: 1 }} />
           <Typography variant="body1">Username</Typography>
         </Box>
       )}
-      <Divider sx={{ border: '1px dashed #e67e22' }} />
-      <List sx={{ p: open ? 1 : 0 }}>
+
+      {/* <List sx={{ p: open ? 1 : 0, paddingTop: '2rem' }}>
         {menuItems.map((item, index) => (
-          <React.Fragment key={index}>
+          <React.Fragment key={index} >
             <ListItem
-              button
               sx={{
-                py: open ? 1 : 0.5,
+                py: open ? 2 : 3,
                 px: open ? 2 : 1,
                 '&:hover': {
-                  backgroundColor: 'orange',
-                  color: 'white',
+                  backgroundColor: '#f57c00',
+                  color: '#fff',
+                  borderRadius: '10px',
                   '& .MuiListItemIcon-root': {
-                    color: 'white',
+                    color: '#fff',
                   }
                 }
               }}
             >
-              <ListItemIcon sx={{ minWidth: open ? 40 : 20 }}>
+              <ListItemIcon sx={{
+                minWidth: open ? 40 : 20,
+                ":hover": {
+                  color: "#fff"
+                }
+              }}>
                 {item.icon}
               </ListItemIcon>
               {open && <ListItemText primary={item.text} />}
             </ListItem>
+            <Divider />
+          </React.Fragment>
+        ))}
+      </List> */}
+
+
+      <List sx={{ p: open ? 1 : 0, paddingTop: '2rem' }}>
+        {menuItems.map((item, index) => (
+          <React.Fragment key={index}>
+            <SidebarLink to={item.path} icon={item.icon} text={item.text} open={open} />
             <Divider />
           </React.Fragment>
         ))}
@@ -108,6 +125,7 @@ const Sidebar = () => {
         >
           <MenuIcon />
         </IconButton>
+        {/* medium size */}
         <Drawer
           variant="temporary"
           open={mobileOpen}
@@ -117,13 +135,15 @@ const Sidebar = () => {
           }}
           sx={{
             display: { xs: 'block', md: 'none' },
-            '& .MuiDrawer-paper': { width: 200 },
+            [`& .MuiDrawer-paper`]: { width: 200, transition: 'width 0.4s' },
           }}
         >
           {drawer}
         </Drawer>
       </Hidden>
       <Hidden mdDown implementation="css">
+
+        {/* small size  */}
         <Drawer
           variant="permanent"
           open={open}

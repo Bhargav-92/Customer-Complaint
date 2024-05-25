@@ -5,7 +5,6 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 
 const hoverEffect = {
@@ -39,9 +38,9 @@ export default function CompletedRequest() {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}>
-                <CompletedRequest sx={{
+                <CheckCircleOutlineRoundedIcon sx={{
                     fontSize: '4rem',
-                    color:'#0E292E'
+                    color:'#228B22'
                 }} />
             </CardMedia>
         </Card>
