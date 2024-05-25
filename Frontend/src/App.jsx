@@ -21,6 +21,7 @@ import Loader from "./Components/Loader/Loader";
 import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
 import AuthLayout from "./layouts/AuthLayout";
+import Sidebar from "./Components/Admin/Sidebar/Sidebar";
 
 function App() {
 
