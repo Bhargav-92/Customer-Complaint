@@ -6,6 +6,8 @@ import AdminProfile from "../Components/Admin/AdminComponents/Profile/Profile"
 import FAQ from "../Components/Admin/AdminComponents/Faq/FAQ"
 import LineChartComponent from "../Components/Admin/AdminComponents/Charts/LineChart"
 import PieChartComponent from "../Components/Admin/AdminComponents/Charts/PieChart"
+import UsersTable from "../Components/Admin/AdminComponents/AllUsers/UsersTable"
+import ComplaintsTable from "../Components/Admin/AdminComponents/AllComplaints/ComplaintsTable"
 
 export default function AdminLayout({ children }) {
     return (
@@ -21,7 +23,8 @@ export default function AdminLayout({ children }) {
           <Route path="/adminfaq" element={<FAQ />} />
           <Route path="/linechart" element={<LineChartComponent />} />
           <Route path="/piechart" element={<PieChartComponent/>} />
-        
+          <Route path="/allusers" element={<UsersTable />} />
+          <Route path="/allcomplaints" element={<ComplaintsTable/>} />
           
       
         </Routes>
