@@ -3,8 +3,7 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { submitComplaint,getAllComplaints,updateComplaintStatus,getUserComplaint } from '../Controllers/complaint.js';
-import auth from '../Middleware/authmiddleware.js';
+import { submitComplaint,getUserComplaint } from '../Controllers/complaint.js';
 import usermiddleware from '../Middleware/authmiddleware.js';
 
 const router = express.Router();

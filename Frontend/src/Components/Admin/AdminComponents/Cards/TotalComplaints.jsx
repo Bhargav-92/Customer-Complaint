@@ -11,10 +11,15 @@ const hoverEffect = {
     background: '#fff',
     color: '#000',
     marginTop: '20px',
+    boxShadow: '4px 8px 8px rgba(0, 0, 0, 0.2)',
+    transition: '.2s linear',
     ':hover': {
-        background: '#F9AD3D',
+        background: '#FFA500',
         color: '#fff',
-        
+        boxShadow: '0 0 10px #000',
+        '& .MuiSvgIcon-root': { // Target the CheckCircleOutlineRoundedIcon
+            color: '#fff',
+        },
     }
 }
 export default function TotalComplaints() {
@@ -42,6 +47,7 @@ export default function TotalComplaints() {
             }}>
                 <EditNoteRoundedIcon sx={{
                     fontSize: '4rem',
+                    color:'#42BBA7'
                 }} />
             </CardMedia>
         </Card>

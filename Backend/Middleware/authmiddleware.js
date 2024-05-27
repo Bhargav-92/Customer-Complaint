@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import {UserModel} from '../models/user.js';
 
-const usermiddleware = async (req, res, next) => {
+const authmiddleware = async (req, res, next) => {
     const token = req.header('Authorization')?.replace('Bearer ', '');
     if (!token) {
         return res.status(401).json({ error: 'No token provided' });
@@ -26,4 +26,4 @@ const usermiddleware = async (req, res, next) => {
     }
 };
 
-export default usermiddleware
+export default authmiddleware

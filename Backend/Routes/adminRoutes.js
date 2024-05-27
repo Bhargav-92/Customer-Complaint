@@ -1,12 +1,13 @@
 import express from 'express';
 import adminmiddleware from '../Middleware/adminmiddleware.js';
+import { getAllComplaints,updateComplaintStatus , getUserComplaint } from '../Controllers/complaint.js';
 
 
 const router = express.Router();
 
-// Login endpoint
+
 // Get all complaints
-router.get('/complaints', adminmiddleware, getAllComplaints);
+router.get('/complaintdetails', adminmiddleware, getAllComplaints);
 
 // Update complaint status
 router.patch('/complaints/:id',adminmiddleware, updateComplaintStatus);

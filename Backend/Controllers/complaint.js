@@ -20,12 +20,13 @@ export const submitComplaint = async (req, res) => {
 // Get all complaints  for admin side 
 export const getAllComplaints = async (req, res) => {
     try {
-        const complaints = await ComplaintsModel.find({});
+        const complaints = await ComplaintsModel.find({}, '-document')
         res.json(complaints);
     } catch (err) {
         res.status(500).json({message:'Cannot get complaints',error:err});
     }
 };
+
 
 // get all complaints for user side 
 export const  getUserComplaint = async (req, res) => {
