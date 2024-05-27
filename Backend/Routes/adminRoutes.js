@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 // Get all complaints
-router.get('/complaint', adminmiddleware, getAllComplaints);
+router.get('/complaint',adminmiddleware, getAllComplaints);
 
 // Update complaint status
 router.patch('/complaints/:id',adminmiddleware, updateComplaintStatus);

@@ -3,7 +3,7 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { submitComplaint,getUserComplaint } from '../Controllers/complaint.js';
+import { submitComplaint,getUserComplaint, currentWeek } from '../Controllers/complaint.js';
 import usermiddleware from '../Middleware/authmiddleware.js';
 
 const router = express.Router();
@@ -33,6 +33,10 @@ const upload = multer({ storage: storage });
 
 // Complaint submission endpoint
 router.post('/complaints',usermiddleware, upload.single('document'), submitComplaint);
+
+router.get('/currentWeek',currentWeek)
+
+
 
 
 
