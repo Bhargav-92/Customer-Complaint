@@ -14,19 +14,19 @@ const Dashboard = () => {
                 <Grid container md={12} p={3}>
                     <Grid md={3} p={2}>
                         <PendingRequest />
-                        <Divider sx={{ mt: 4 , width: '100%', border: '1px solid black'}} />
+                        
                     </Grid>
                     <Grid md={3} p={2}>
                         <CompletedRequest />
-                        <Divider sx={{ mt: 4 , width: '100%', border: '1px solid black'}} />
+                        
                     </Grid>
                     <Grid md={3} p={2}>
                         <TotalComplaints />
-                        <Divider sx={{ mt: 4 , width: '100%', border: '1px solid black'}} />
+                        
                     </Grid>
                     <Grid md={3} p={2}>
                         <User />
-                        <Divider sx={{ mt: 4 , width: '100%', border: '1px solid black'}} />
+                        
                     </Grid>
                     <Grid  lg={12}>
                         <Typography variant="h4" component="h1" gutterBottom sx={{ mt: 4 }}>
