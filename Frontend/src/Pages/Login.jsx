@@ -7,7 +7,7 @@ import axios from 'axios';
 import SignImg from '../assets/login.png';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { axios_instance } from '../endPoints/baseURL';
+import axios_instance from '../endPoints/baseURL';
 import AuthContext from '../Components/AuthContext/AuthContext';
 
 const ButtonStyle = {
