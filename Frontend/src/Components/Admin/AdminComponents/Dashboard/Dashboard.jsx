@@ -14,7 +14,6 @@ const Dashboard = () => {
                 <Grid container md={12} p={3}>
                     <Grid md={3} p={2}>
                         <PendingRequest />
-                        <Divider sx={{ mt: 4 , width: '100%', border: '1px solid black'}} />
                     </Grid>
                     <Grid md={3} p={2}>
                         <CompletedRequest />

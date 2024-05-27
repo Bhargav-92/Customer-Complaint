@@ -21,6 +21,7 @@ export const submitComplaint = async (req, res) => {
 export const getAllComplaints = async (req, res) => {
     try {
         const complaints = await ComplaintsModel.find({}, '-document')
+        console.log(complaints)
         res.json(complaints);
     } catch (err) {
         res.status(500).json({message:'Cannot get complaints',error:err});

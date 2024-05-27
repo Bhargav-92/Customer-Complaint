@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 // Get all complaints
-router.get('/complaintdetails', adminmiddleware, getAllComplaints);
+router.get('/complaint', adminmiddleware, getAllComplaints);
 
 // Update complaint status
 router.patch('/complaints/:id',adminmiddleware, updateComplaintStatus);
@@ -16,7 +16,7 @@ router.patch('/complaints/:id',adminmiddleware, updateComplaintStatus);
 router.get('/user/:userId/complaints',adminmiddleware, getUserComplaint);
 
 
-// Update user and add profile image
-router.patch('/users/:id', auth, upload, updateUserProfile);
+// // Update user and add profile image
+// router.patch('/users/:id', auth, upload, updateUserProfile);
 
 export default router

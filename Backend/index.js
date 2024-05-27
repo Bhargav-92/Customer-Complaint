@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import userRoutes from './Routes/userRoutes.js';
 import complaintRoutes from './Routes/complaintRoutes.js';
+import adminRoutes from './Routes/adminRoutes.js';
 
 const app = express();
 app.use(express.json());
@@ -27,6 +28,7 @@ mongoose.connect(mongoURI, {
 // Use routes
 app.use('/api', userRoutes);
 app.use('/api', complaintRoutes);
+app.use('/api',adminRoutes)
 
 
 
