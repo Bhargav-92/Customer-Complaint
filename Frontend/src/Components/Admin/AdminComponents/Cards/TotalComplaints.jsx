@@ -10,9 +10,11 @@ import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 const hoverEffect = {
     background: '#fff',
     color: '#000',
+    marginTop: '20px',
     ':hover': {
-        background: '#f57c00',
+        background: '#F9AD3D',
         color: '#fff',
+        
     }
 }
 export default function TotalComplaints() {
@@ -26,7 +28,7 @@ export default function TotalComplaints() {
                         Total Complaints
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary" component="div" >
-                        {'Complaints'}
+                        {'70'}
                     </Typography>
                 </CardContent>
             </Box>

@@ -10,8 +10,9 @@ import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlin
 const hoverEffect = {
     background: '#fff',
     color: '#000',
+    marginTop: '20px',
     ':hover': {
-        background: '#f57c00',
+        background: '#F9AD3D',
         color: '#fff',
     }
 }
@@ -26,7 +27,7 @@ export default function CompletedRequest() {
                         Completed Complaints
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary" component="div" >
-                        {'Complaints'}
+                        {'50'}
                     </Typography>
                 </CardContent>
             </Box>

@@ -10,8 +10,9 @@ import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 const hoverEffect = {
     background: '#fff',
     color: '#000',
+    marginTop: '20px',
     ':hover': {
-        background: '#f57c00',
+        background: '#F9AD3D',
         color: '#fff',
     }
 }
@@ -23,10 +24,10 @@ export default function User() {
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                     <Typography component="div" variant="h5">
-                        Traffic
+                        Total Clients
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary" component="div" >
-                        {'Complaints'}
+                        {'100'}
                     </Typography>
                 </CardContent>
             </Box>

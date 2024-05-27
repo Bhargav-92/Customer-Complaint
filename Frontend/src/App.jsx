@@ -11,15 +11,16 @@ import Faq from "./Pages/Faq";
 import Home from "./Pages/Home";
 import SignIn from "./Pages/Login";
 import MyComplaint from "./Pages/MyComplaint";
-import Nopage from "./Pages/Nopage";
 import Profile from "./Pages/Profile";
 import Register from "./Pages/Register";
 import { useContext } from "react";
 import Dashboard from "./Components/Admin/AdminComponents/Dashboard/Dashboard";
-import Loader from "./Components/Loader/Loader";
 import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
 import AuthLayout from "./layouts/AuthLayout";
+import AdminProfile from "./Components/Admin/AdminComponents/Profile/Profile";
+import FAQ from "./Components/Admin/AdminComponents/Faq/FAQ";
+import LineChartComponent from "./Components/Admin/AdminComponents/Charts/LineChart";
 
 function App() {
 
@@ -54,8 +55,11 @@ function AppContent() {
 
   const Admin = (
     <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/admin/profile" element={<Profile />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/adminprofile" element={<AdminProfile />} />
+      <Route path="/adminfaq" element={<FAQ/>} />
+      <Route path="/linechart" element={<LineChartComponent />} />
+
     </Routes>
   );
 

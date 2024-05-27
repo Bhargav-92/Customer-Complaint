@@ -1,18 +1,16 @@
 import React from "react"
 import Sidebar from "../Components/Admin/AdminComponents/Sidebar/Sidebar"
-import Appbar from "../Components/Admin/AdminComponents/Appbar/Appbar"
-import './layout.css'
+import { Routes, BrowserRouter, Route } from "react-router-dom"
+import Dashboard from "../Components/Admin/AdminComponents/Dashboard/Dashboard"
+import AdminProfile from "../Components/Admin/AdminComponents/Profile/Profile"  
+import FAQ from "../Components/Admin/AdminComponents/Faq/FAQ"
+import LineChartComponent from "../Components/Admin/AdminComponents/Charts/LineChart"
 
 export default function AdminLayout({ children }) {
     return (
         <div>
-            <div className="app">
-                <Sidebar />
-                <div className="content">
-                    <Appbar />
-                    {children}
-                </div>
-            </div>
+            <Sidebar />
+            {children}
         </div>
     )
 }

@@ -10,8 +10,9 @@ import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
 const hoverEffect = {
   background: '#fff',
   color: '#000',
+  marginTop: '20px',
   ':hover': {
-    background: '#f57c00',
+    background: '#F9AD3D',
     color: '#fff',
   }
 }
@@ -26,7 +27,7 @@ export default function PendingRequest() {
             Pending Complaints
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div" >
-            {'Complaints'}
+            {'20'}
           </Typography>
         </CardContent>
       </Box>

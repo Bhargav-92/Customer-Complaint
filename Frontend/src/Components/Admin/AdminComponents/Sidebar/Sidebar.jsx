@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Drawer, List, Divider, Box, Hidden, Avatar, Typography, IconButton, Toolbar } from '@mui/material';
+import { Drawer, List, ListItem, ListItemText, ListItemIcon, Divider, IconButton, Toolbar, Box, Hidden, Avatar, Typography, AppBar } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import PieChartIcon from '@mui/icons-material/PieChart';
@@ -8,11 +8,18 @@ import HelpIcon from '@mui/icons-material/Help';
 import PeopleIcon from '@mui/icons-material/People';
 import ReportIcon from '@mui/icons-material/Report';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link, Outlet } from 'react-router-dom';
 import SidebarLink from './SidebarLink';
 
-const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
+const Sidebar = () => {
   const [open, setOpen] = useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  // Function to handle keydown event for the Shift key combinations
   const handleKeyDown = (event) => {
     if (event.shiftKey && event.key === '>') {
       setOpen(true);
@@ -22,35 +29,46 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
   };
 
   useEffect(() => {
+    // Add event listener for keydown event
     window.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
   const menuItems = [
-    { text: 'Dashboard', icon: <DashboardIcon sx={{ color: '#000' }} />, path: '/' },
-    { text: 'Line Chart', icon: <ShowChartIcon sx={{ color: '#000' }} />, path: '/admin/line' },
-    { text: 'Pie Chart', icon: <PieChartIcon sx={{ color: '#000' }} />, path: '/admin/pie' },
-    { text: 'Profile', icon: <AccountCircleIcon sx={{ color: '#000' }} />, path: '/admin/profile' },
-    { text: 'FAQ', icon: <HelpIcon sx={{ color: '#000' }} />, path: '/admin/faq' },
-    { text: 'All users', icon: <PeopleIcon sx={{ color: '#000' }} />, path: '/admin/users' },
-    { text: 'All Complaints', icon: <ReportIcon sx={{ color: '#000' }} />, path: '/admin/complaints' },
+    { text: 'Dashboard', icon: <DashboardIcon sx={{ color: '#000' }} />, path: '/dashboard' },
+    { text: 'Line Chart', icon: <ShowChartIcon sx={{ color: '#000' }} /> },
+    { text: 'Pie Chart', icon: <PieChartIcon sx={{ color: '#000' }} /> },
+    { text: 'Profile', icon: <AccountCircleIcon sx={{ color: '#000' }} />, path: '/adminprofile' },
+    { text: 'FAQ', icon: <HelpIcon sx={{ color: '#000' }} />, path: '/adminfaq' },
+    { text: 'All users', icon: <PeopleIcon sx={{ color: '#000' }} />, path: '/allusers' },
+    { text: 'All Complaints', icon: <ReportIcon sx={{ color: '#000' }} /> },
   ];
 
   const drawer = (
     <div>
-      <IconButton onClick={() => setOpen(!open)}>
-        <MenuIcon sx={{ color: '#f57c00'}} />
-      </IconButton>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
-        {open && (
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <Avatar alt="Profile Picture" src="" sx={{ width: 60, height: 60, mx: 'auto', my: 1 }} />
-            <Typography variant="body1">Username</Typography>
-          </Box>
-        )}
-      </Box>
+      <AppBar position="fixed" sx={{ backgroundColor: 'white', color: 'black', borderBottom: '1px solid #AAAA', boxShadow: 'none' }}>
+        <Toolbar>
+          <IconButton onClick={() => setOpen(!open)}>
+            <MenuIcon sx={{ color: '#f57c00' }} />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} pl={3}>
+            Customer Complaint Admin
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Toolbar />
+
+      {open && (
+        <Box sx={{ textAlign: 'center', p: 2 }}>
+          <Avatar alt="Profile Picture" src="" sx={{ width: 60, height: 60, mx: 'auto', my: 1 }} />
+          <Typography variant="body1">Username</Typography>
+        </Box>
+      )}
+
       <List sx={{ p: open ? 1 : 0, paddingTop: '2rem' }}>
         {menuItems.map((item, index) => (
           <React.Fragment key={index}>
@@ -63,8 +81,17 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
   );
 
   return (
-    <Box sx={{ display: 'flex', width: 'auto' }}>
+    <Box sx={{ display: 'flex' }}>
       <Hidden mdUp implementation="css">
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerToggle}
+          sx={{ ml: 2, mt: 2, color: 'black' }}
+        >
+          <MenuIcon />
+        </IconButton>
         <Drawer
           variant="temporary"
           open={mobileOpen}
@@ -74,7 +101,7 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
           }}
           sx={{
             display: { xs: 'block', md: 'none' },
-            [`& .MuiDrawer-paper`]: { width: 200, transition: 'width 0.4s' },
+            '& .MuiDrawer-paper': { width: '25%' },
           }}
         >
           {drawer}
@@ -85,14 +112,30 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
           variant="permanent"
           open={open}
           sx={{
-            width: open ? 200 : 60,
+            flexBasis: 'auto',
             flexShrink: 0,
-            [`& .MuiDrawer-paper`]: { width: open ? 200 : 60, transition: 'width 0.2s' },
+            '& .MuiDrawer-paper': {
+              flexBasis: 'auto',
+              transition: 'width 0.2s',
+            },
           }}
         >
           {drawer}
         </Drawer>
       </Hidden>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          flexBasis: '90%',
+          width: { xs: '100%', md: `calc(100% - 30%)` },
+          transition: 'width 0.2s',
+          p: 3,
+        }}
+      >
+        <Toolbar />
+        <Outlet />
+      </Box>
     </Box>
   );
 };
