@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, Container, Divider, Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate if you're using react-router
 
 const AdminProfile = () => {
   const [name, setName] = useState('');
@@ -8,14 +9,18 @@ const AdminProfile = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const navigate = useNavigate(); // Define navigate
+
   const handleSave = () => {
     // Logic to save profile details
     console.log('Profile details saved');
   };
 
   const handleLogout = () => {
-    // Logic to handle logout
-    console.log('Logged out');
+    localStorage.clear();
+    localStorage.removeItem('admin');
+    navigate('/');
+    window.location.reload();
   };
 
   return (
@@ -23,13 +28,13 @@ const AdminProfile = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <Box sx={{ textAlign: 'left' }}>
-            <Typography variant="h4" component="h1" gutterBottom sx={{ mt:4 }}>
+            <Typography variant="h4" component="h1" gutterBottom sx={{ mt: 4 }}>
               Admin <br /> Profile
             </Typography>
           </Box>
         </Grid>
-        <Divider orientation="vertical" flexItem sx={{ mr: 3, mb: 0, ml: -8 }} />
-        <Grid item xs={6} md={8} lg={8}>
+        <Divider orientation="vertical" flexItem sx={{ mx: 3 }} />
+        <Grid item xs={12} md={7}>
           <Box sx={{ mt: 1 }}>
             <TextField
               label="Name"

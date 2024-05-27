@@ -45,7 +45,7 @@ const Sidebar = () => {
     { text: 'Profile', icon: <AccountCircleIcon sx={{ color: '#000' }} />, path: '/adminprofile' },
     { text: 'FAQ', icon: <HelpIcon sx={{ color: '#000' }} />, path: '/adminfaq' },
     { text: 'All users', icon: <PeopleIcon sx={{ color: '#000' }} />, path: '/allusers' },
-    { text: 'All Complaints', icon: <ReportIcon sx={{ color: '#000' }} /> },
+    { text: 'All Complaints', icon: <ReportIcon sx={{ color: '#000' }} />, path: '/allcomplaints' },
   ];
 
   const drawer = (
