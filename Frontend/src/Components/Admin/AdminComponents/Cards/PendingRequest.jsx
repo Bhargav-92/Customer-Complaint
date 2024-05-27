@@ -26,7 +26,7 @@ export default function PendingRequest() {
   const theme = useTheme();
 
   return (
-    <Card sx={{ display: 'flex', ...hoverEffect }}>
+    <Card sx={{ display: 'flex', ...hoverEffect, boxShadow: '4px 8px 8px rgba(0, 0, 0, 0.1)' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">
