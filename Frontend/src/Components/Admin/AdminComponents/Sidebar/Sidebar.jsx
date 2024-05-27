@@ -40,8 +40,8 @@ const Sidebar = () => {
 
   const menuItems = [
     { text: 'Dashboard', icon: <DashboardIcon sx={{ color: '#000' }} />, path: '/dashboard' },
-    { text: 'Line Chart', icon: <ShowChartIcon sx={{ color: '#000' }} /> },
-    { text: 'Pie Chart', icon: <PieChartIcon sx={{ color: '#000' }} /> },
+    { text: 'Line Chart', icon: <ShowChartIcon sx={{ color: '#000' }} />, path: '/linechart' },
+    { text: 'Pie Chart', icon: <PieChartIcon sx={{ color: '#000' }} />,  path: '/piechart' },
     { text: 'Profile', icon: <AccountCircleIcon sx={{ color: '#000' }} />, path: '/adminprofile' },
     { text: 'FAQ', icon: <HelpIcon sx={{ color: '#000' }} />, path: '/adminfaq' },
     { text: 'All users', icon: <PeopleIcon sx={{ color: '#000' }} />, path: '/allusers' },

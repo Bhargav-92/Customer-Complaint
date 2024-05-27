@@ -21,6 +21,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import AdminProfile from "./Components/Admin/AdminComponents/Profile/Profile";
 import FAQ from "./Components/Admin/AdminComponents/Faq/FAQ";
 import LineChartComponent from "./Components/Admin/AdminComponents/Charts/LineChart";
+import PieChartComponent from "./Components/Admin/AdminComponents/Charts/PieChart";
 
 function App() {
 
@@ -59,6 +60,7 @@ function AppContent() {
       <Route path="/adminprofile" element={<AdminProfile />} />
       <Route path="/adminfaq" element={<FAQ/>} />
       <Route path="/linechart" element={<LineChartComponent />} />
+      <Route path="/piechart" element={<PieChartComponent />} />
 
     </Routes>
   );
