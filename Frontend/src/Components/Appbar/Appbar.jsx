@@ -81,8 +81,8 @@ function Navbar() {
   const capitalizeWords = (string) => string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
 
   useEffect(() => {
-    const name = localStorage.getItem('name');
-    if (name) setName(capitalizeWords(name));
+    const user = JSON.parse(localStorage.getItem('user'))
+    setName(capitalizeWords(user.name))    
   }, []);
 
 

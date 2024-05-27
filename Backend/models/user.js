@@ -18,6 +18,7 @@ const UsersSchema = new mongoose.Schema({
         enum: ['user', 'admin'], // Set the available roles
         default: 'user' // Set a default role if not provided
     },
+    avatar:String,
     date: { type: Date, default: Date.now }
 });
 

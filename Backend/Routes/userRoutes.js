@@ -1,5 +1,5 @@
 import express from 'express';
-import { login , createUser } from '../Controllers/users.js';
+import { login , createUser, getprofile, updateprofile } from '../Controllers/users.js';
 import auth from '../Middleware/authmiddleware.js';
 
 
@@ -16,8 +16,11 @@ router.get('/protected', auth, (req, res) => {
     res.json({ message: 'This is a protected route', user: req.user });
 });
 
+// for update profile 
+router.get('/profile',auth,getprofile)
 
-// Update user and add profile image
-// router.patch('/users/:id', auth, upload, updateUserProfile);
+// for update profile 
+router.patch('/profile',auth, updateprofile)
+
 
 export default router
