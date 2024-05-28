@@ -30,9 +30,7 @@ export const getAllComplaints = async (req, res) => {
 };
 
 export const currentWeek = async (req, res) => {
-
     const today = new Date();
-
     const startOfCurrentWeek = startOfWeek(today, { weekStartsOn: 1 });
     const endOfCurrentWeek = endOfWeek(today, { weekStartsOn: 1 });
 

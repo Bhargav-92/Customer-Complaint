@@ -37,9 +37,6 @@ router.post('/complaints',usermiddleware, upload.single('document'), submitCompl
 router.get('/currentWeek',currentWeek)
 
 
-
-
-
 // get all compaint for user side raised by perticular user
 router.get('/user/:userId/complaints',usermiddleware, getUserComplaint);
 
