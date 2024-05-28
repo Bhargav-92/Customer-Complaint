@@ -1,10 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios_instance from "../../../../endPoints/baseURL";
 import { Box } from "@mui/material";
-import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import Chart from 'chart.js/auto';
 
 const PieChartComponent = () => {
-  const [data, setData] = useState([]);
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [{
+      label: 'Complaint Data',
+      data: [],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)'
+      ],
+      hoverOffset: 4
+    }]
+  });
+
+  const chartRef = useRef(null);
+  const chartInstance = useRef(null);
 
   useEffect(() => {
     const fetchComplaintsData = async () => {
@@ -15,15 +31,23 @@ const PieChartComponent = () => {
         const totalComplaints = complaints.length;
         const solvedComplaints = complaints.filter(complaint => complaint.status === 'Completed').length;
         const pendingComplaints = complaints.filter(complaint => complaint.status === 'Pending').length;
-        
+
         const totalUsers = new Set(complaints.map(complaint => complaint.userId)).size;
 
-        setData([
-          { name: "Total Complaints", value: totalComplaints },
-          { name: "Solved Complaints", value: solvedComplaints },
-          { name: "Pending Complaints", value: pendingComplaints },
-          { name: "Total Users", value: totalUsers }
-        ]);
+        setChartData({
+          labels: ['Total Complaints', 'Solved Complaints', 'Pending Complaints', 'Total Users'],
+          datasets: [{
+            label: 'Complaint Data',
+            data: [totalComplaints, solvedComplaints, pendingComplaints, totalUsers],
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)'
+            ],
+            hoverOffset: 4
+          }]
+        });
       } catch (error) {
         console.error('Error fetching complaints data:', error);
       }
@@ -32,40 +56,34 @@ const PieChartComponent = () => {
     fetchComplaintsData();
   }, []);
 
-  // Define colors for each segment
-  const colors = ['#8884d8', '#82ca9d', '#ffc658', '#ff7f0e'];
+  useEffect(() => {
+    if (chartRef.current) {
+      if (chartInstance.current) {
+        chartInstance.current.destroy();
+      }
+      const ctx = chartRef.current.getContext('2d');
+      chartInstance.current = new Chart(ctx, {
+        type: 'pie',
+        data: chartData,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            tooltip: {
+              enabled: true
+            }
+          }
+        }
+      });
+    }
+  }, [chartData]);
 
   return (
-    <Box sx={{ display: 'flex', flexGrow: 1, p: { xs: 4, md: 1 }, justifyContent: 'center' }}>
-      <Box sx={{ width: '100%', height: '100%' }}>
-        <ResponsiveContainer width="100%" height={400}>
-          <PieChart width={400} height={400} margin={{ top: 10, right: 10, bottom: 10, left: 10 }} 
-            onMouseEnter={() => console.log("Enter")} onMouseLeave={() => console.log("Leave")}>
-            <Pie
-              dataKey="value"
-              data={data}
-              cx="50%"
-              cy="50%"
-              startAngle={0}
-              endAngle={360}
-              innerRadius={60}
-              outerRadius={120}
-              paddingAngle={4}
-              cornerRadius={3}
-              label={true}
-            >
-              {data.map((entry, index) => (
-                <path
-                  key={`cell-${index}`}
-                  d={entry.d}
-                  fill={colors[index % colors.length]}
-                />
-              ))}
-            </Pie>
-            <Tooltip />
-            <Legend />
-          </PieChart>
-        </ResponsiveContainer>
+    <Box sx={{ display: 'flex', flexGrow: 1, p: { xs: 4, md: 1 }, justifyContent: 'center' , alignItems: 'center'}} mt={10}>
+      <Box sx={{ width: '50%', height: 500 }}>
+        <canvas ref={chartRef}></canvas>
       </Box>
     </Box>
   );

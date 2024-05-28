@@ -21,7 +21,7 @@ const AdminProfile = () => {
     try {
       const response = await axios.get('http://localhost:4000/api/admin/profile', {
         headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('adminToken'), // Using adminToken for admin profile
+          'Authorization': 'Bearer ' + localStorage.getItem('token'), // Using adminToken for admin profile
         },
       });
       setFormData({
@@ -70,7 +70,7 @@ const AdminProfile = () => {
       await axios.patch('http://localhost:4000/api/admin/profile', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': 'Bearer ' + localStorage.getItem('adminToken'),
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
         },
       });
 

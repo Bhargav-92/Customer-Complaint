@@ -1,5 +1,5 @@
 import express from 'express';
-import adminmiddleware from '../Middleware/adminmiddleware.js';
+import adminmiddleware from '../Middleware/adminMiddleware.js';
 import { getAllComplaints, updateComplaintStatus, getUserComplaint } from '../Controllers/complaint.js';
 import { getprofile, updateprofile } from '../Controllers/users.js';
 
@@ -17,9 +17,9 @@ router.get('/user/:userId/complaints', adminmiddleware, getUserComplaint);
 
 
 // for update profile 
-router.get('/profile', adminmiddleware, getprofile ,)
+router.get('/admin/profile', adminmiddleware, getprofile)
 
 // for update profile 
-router.patch('/profile', adminmiddleware, updateprofile)
+router.patch('/admin/profile', adminmiddleware, updateprofile)
 
 export default router
