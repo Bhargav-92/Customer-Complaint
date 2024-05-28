@@ -1,7 +1,7 @@
 import express from 'express';
 import { login, createUser, getprofile, updateprofile, getallusers } from '../Controllers/users.js';
 import auth from '../Middleware/authmiddleware.js';
-import adminmiddleware from '../Middleware/adminmiddleware.js';
+import adminmiddleware from '../Middleware/adminMiddleware.js';
 
 
 const router = express.Router();
