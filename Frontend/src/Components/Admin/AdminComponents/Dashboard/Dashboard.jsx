@@ -6,6 +6,7 @@ import User from '../Cards/User'
 import { Box, Divider, Grid, Typography } from '@mui/material'
 import LineChartComponent from '../Charts/LineChart'
 import PieChartComponent from '../Charts/PieChart'
+import RecentComplaints from '../RecentComplaints/RecentComplaints'
 
 const Dashboard = () => {
     return (
@@ -29,7 +30,7 @@ const Dashboard = () => {
                             Line Chart
                             <Divider sx={{ mt: 4, width: '100%', border: '1px solid orange' }} />
                         </Typography>
-                        <LineChartComponent />
+                        {/* <LineChartComponent /> */}
                     </Grid>
                     <Divider sx={{ mt: 4, width: '100%', border: '1px solid orange' }} />
                     <Grid lg={12}>
@@ -38,6 +39,21 @@ const Dashboard = () => {
                             <Divider sx={{ mt: 4, width: '100%', border: '1px solid orange' }} />
                         </Typography>
                         <PieChartComponent />
+                    </Grid>
+                    <Grid lg={12}>
+                        <Typography variant="h4" component="h1" gutterBottom sx={{ mt: 4 }}>
+                            Recent Complaints
+                            <Divider sx={{ mt: 4, width: '100%', border: '1px solid orange' }} />
+                        </Typography>
+                        <RecentComplaints />
+                    </Grid>
+
+                    <Grid lg={12}>
+                        <Typography variant="h4" component="h1" gutterBottom sx={{ mt: 4 }}>
+                            Recent Users
+                            <Divider sx={{ mt: 4, width: '100%', border: '1px solid orange' }} />
+                        </Typography>
+                        <RecentComplaints />
                     </Grid>
                 </Grid>
             </Box>
