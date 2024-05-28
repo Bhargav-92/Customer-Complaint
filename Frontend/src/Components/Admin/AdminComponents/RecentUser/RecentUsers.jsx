@@ -10,18 +10,16 @@ import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import ComplaintModal from '../ComplaintModal/ComplaintModal';
 
-const UsersTable = ({ users }) => {
+const RecentUsers = ({ users }) => {
+    
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   const staticData = [
     { name: 'John Doe', email: 'john@example.com', phone: '123-456-7890', role: 'user', complaint: 'This complaint is done by me' },
     { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210', role: 'user', complaint: 'This complaint is done by me for testing purpose' },
     
   ];
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
-
-
   const renderHeaderCell = ({ children, ...rest }) => {
     return (
       <Resizable
@@ -75,4 +73,4 @@ const UsersTable = ({ users }) => {
   );
 };
 
-export default UsersTable;
+export default RecentUsers;
