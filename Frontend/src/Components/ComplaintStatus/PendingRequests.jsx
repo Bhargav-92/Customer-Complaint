@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { Button, Card, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import Img from '../../assets/logo/Customer_Complaint.png';
-import { axios_instance } from '../../endPoints/baseURL';
+import  axios_instance  from '../../endPoints/baseURL';
 import styles from './complaint.module.css'
 
 export default function PendingRequests() {

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios_instance from '../../../../endPoints/baseURL'; // Import your axios instance
 import { Resizable } from 'react-resizable';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,44 +11,24 @@ import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import ComplaintModal from '../ComplaintModal/ComplaintModal'; // Import ComplaintModal component
 
-const ComplaintsTable = ({ complaints }) => {
-  // Sample static data for the table
-  const staticData = [
-    { 
-      firstname: 'John', 
-      lastname: 'Doe', 
-      email: 'john@example.com', 
-      phone: '123-456-7890', 
-      area: 'Area 1', 
-      complaintType: 'Type A', 
-      sectors: 'Sector 1', 
-      company: 'Company A', 
-      date: '2023-05-27', 
-      details: 'This is a complaint by John Doe', 
-      document: 'document1.pdf', 
-      status: 'Pending', 
-      userId: '1' 
-    },
-    { 
-      firstname: 'Jane', 
-      lastname: 'Smith', 
-      email: 'jane@example.com', 
-      phone: '987-654-3210', 
-      area: 'Area 2', 
-      complaintType: 'Type B', 
-      sectors: 'Sector 2', 
-      company: 'Company B', 
-      date: '2023-05-28', 
-      details: 'This is another complaint by Jane Smith', 
-      document: 'document2.pdf', 
-      status: 'Resolved', 
-      userId: '2' 
-    },
-    // Add more sample data as needed
-  ];
-
+const ComplaintsTable = () => {
+  const [complaints, setComplaints] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedComplaint, setSelectedComplaint] = useState(null);
+
+  // Fetch complaints data from the API
+  useEffect(() => {
+    const fetchComplaintsData = async () => {
+      try {
+        const response = await axios_instance.get('/complaint'); // Replace with your API endpoint
+        setComplaints(response.data);
+      } catch (error) {
+        console.error('Error fetching complaints data:', error);
+      }
+    };
+
+    fetchComplaintsData();
+  }, []);
 
   // Function to render resizable table header cell
   const renderHeaderCell = ({ children, ...rest }) => {
@@ -83,7 +64,7 @@ const ComplaintsTable = ({ complaints }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {staticData.map((complaint, index) => (
+            {complaints.map((complaint, index) => (
               <TableRow key={index}>
                 <TableCell>{complaint.firstname}</TableCell>
                 <TableCell>{complaint.lastname}</TableCell>
