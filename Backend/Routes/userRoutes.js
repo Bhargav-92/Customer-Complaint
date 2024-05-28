@@ -1,6 +1,7 @@
 import express from 'express';
-import { login , createUser, getprofile, updateprofile } from '../Controllers/users.js';
+import { login, createUser, getprofile, updateprofile, getallusers } from '../Controllers/users.js';
 import auth from '../Middleware/authmiddleware.js';
+import adminmiddleware from '../Middleware/adminmiddleware.js';
 
 
 const router = express.Router();
@@ -17,10 +18,13 @@ router.get('/protected', auth, (req, res) => {
 });
 
 // for update profile 
-router.get('/profile',auth,getprofile)
+router.get('/profile', auth, getprofile)
 
 // for update profile 
-router.patch('/profile',auth, updateprofile)
+router.patch('/profile', auth, updateprofile)
 
+
+// get all users 
+router.get('/userdata', getallusers)
 
 export default router

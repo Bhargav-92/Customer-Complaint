@@ -21,8 +21,8 @@ export const login = async (req, res) => {
 
             const token = generateToken(user._id, isAdmin);
 
-            console.log("userObj", userObj)
-            console.log("isAdmin", isAdmin)
+            // console.log("userObj", userObj)
+            // console.log("isAdmin", isAdmin)
 
             res.status(201).json({ token, user: userObj });
         } else {
@@ -44,7 +44,6 @@ export const createUser = async (req, res) => {
         const user = await newUser.save();
         res.json(user);
     } catch (err) {
-        console.log(err)
         res.status(500).json({ error: "Server error" });
     }
 };
@@ -66,11 +65,10 @@ export const getprofile = async (req, res) => {
 export const updateprofile = async (req, res) => {
     try {
         const user = await UserModel.findById(req.user.id);
-        const {name , phone , password} = req.body
+        const { name, phone, password } = req.body
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
-        console.log("user.name",name);
         user.name = name || user.name;
         user.phone = phone || user.phone;
 
@@ -80,10 +78,20 @@ export const updateprofile = async (req, res) => {
         }
 
         const updatedUser = await user.save();
-        console.log(updatedUser)
         res.json(updatedUser);
     } catch (err) {
         res.status(500).json({ error: "Internal Server error" });
-        console.log
     }
 }
+
+// Get all users
+export const getallusers = async (req, res) => {
+    try {
+        const users = await UserModel.find({}).select('-password').select('-date').select('-__v');
+        console.log(users);
+        res.status(200).json(users); // Sending response with status code 200
+    } catch (err) {
+        console.error('Error fetching users:', err);
+        res.status(500).json({ error: "Internal Server error" });
+    }
+};

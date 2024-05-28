@@ -2,7 +2,8 @@
   import { Box } from "@mui/material";
   import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
   import axios from 'axios';
-  import { axios_instance } from "../../../../endPoints/baseURL";
+import axios_instance from "../../../../endPoints/baseURL";
+  
 
   const LineChartComponent = () => {
     const [data, setData] = useState([]);

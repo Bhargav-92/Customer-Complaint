@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 
-const InputField = ({ label, placeholder, isRequired, name, value, onChange, readOnly, sx }) => {
+const InputField = ({ label, placeholder, isRequired, name, value, onChange, readOnly, sx, ShowPassword }) => {
     return (
         <TextField
             label={label}
@@ -14,6 +14,7 @@ const InputField = ({ label, placeholder, isRequired, name, value, onChange, rea
                 readOnly: readOnly,
             }}
             sx={sx}
+            ShowPassword={ShowPassword}
             fullWidth
         />
     );

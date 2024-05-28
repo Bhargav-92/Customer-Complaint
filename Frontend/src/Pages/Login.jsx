@@ -51,7 +51,7 @@ function Login() {
         toast.success("Logged in successfully!");
 
       } catch (err) {
-        toast.error(err.response?.data || err.message || "An unexpected error occurred.");
+        toast.error("An unexpected error occurred.");
       } finally {
         setSubmitting(false);
       }
