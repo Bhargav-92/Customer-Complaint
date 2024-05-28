@@ -7,7 +7,7 @@ import {
 import { KeyboardArrowDown, KeyboardArrowUp, Check as CheckIcon } from '@mui/icons-material';
 import ComplaintModal from '../ComplaintModal/ComplaintModal'; // Import ComplaintModal component
 
-const ComplaintsTable = () => {
+const RecentComplaints = () => {
   const [complaints, setComplaints] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedComplaint, setSelectedComplaint] = useState(null);
@@ -146,4 +146,4 @@ const ComplaintsTable = () => {
   );
 };
 
-export default ComplaintsTable;
+export default RecentComplaints;
