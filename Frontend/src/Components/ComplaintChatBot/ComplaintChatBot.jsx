@@ -1,6 +1,5 @@
 import React from "react";
 import ChatBot from "react-simple-chatbot";
-import { ThemeProvider } from "styled-components";
 import Avatar from "../../assets/figma/ProfilePic.png";
 
 const BotRedirect = ({ url, message }) => {

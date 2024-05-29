@@ -51,8 +51,7 @@ export default function ComplaintStatus() {
             <Tabs
               value={value}
               onChange={handleChange}
-              aria-label="basic tabs example"
-            >
+              aria-label="basic tabs example">
               <Tab label="Pending" />
               <Tab label="Completed" sx={{ marginLeft: { md: '20rem', xs: '6rem' } }} />
             </Tabs>

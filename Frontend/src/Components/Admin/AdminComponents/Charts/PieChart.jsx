@@ -1,92 +1,35 @@
-import React, { useEffect, useRef, useState } from "react";
-import axios_instance from "../../../../endPoints/baseURL";
-import { Box } from "@mui/material";
-import Chart from 'chart.js/auto';
+import React, { PureComponent } from "react";
+import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
 
-const PieChartComponent = () => {
-  const [chartData, setChartData] = useState({
-    labels: [],
-    datasets: [{
-      label: 'Complaint Data',
-      data: [],
-      backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(54, 162, 235)',
-        'rgb(255, 205, 86)',
-        'rgb(75, 192, 192)'
-      ],
-      hoverOffset: 4
-    }]
-  });
+const data01 = [
+  { name: "Group A", value: 400 },
+  { name: "Group B", value: 300 },
+  { name: "Group C", value: 300 },
+  { name: "Group D", value: 200 },
+  { name: "Group E", value: 278 },
+  { name: "Group F", value: 189 },
+];
 
-  const chartRef = useRef(null);
-  const chartInstance = useRef(null);
+export default class Example extends PureComponent {
+  static demoUrl = "https://codesandbox.io/s/two-simple-pie-chart-otx9h";
 
-  useEffect(() => {
-    const fetchComplaintsData = async () => {
-      try {
-        const response = await axios_instance.get('/complaint'); // Replace with your API endpoint
-        const complaints = response.data;
-
-        const totalComplaints = complaints.length;
-        const solvedComplaints = complaints.filter(complaint => complaint.status === 'Completed').length;
-        const pendingComplaints = complaints.filter(complaint => complaint.status === 'Pending').length;
-
-        const totalUsers = new Set(complaints.map(complaint => complaint.userId)).size;
-
-        setChartData({
-          labels: ['Total Complaints', 'Solved Complaints', 'Pending Complaints', 'Total Users'],
-          datasets: [{
-            label: 'Complaint Data',
-            data: [totalComplaints, solvedComplaints, pendingComplaints, totalUsers],
-            backgroundColor: [
-              'rgb(255, 99, 132)',
-              'green',
-              'crimson',
-              'rgb(75, 192, 192)'
-            ],
-            hoverOffset: 4
-          }]
-        });
-      } catch (error) {
-        console.error('Error fetching complaints data:', error);
-      }
-    };
-
-    fetchComplaintsData();
-  }, []);
-
-  useEffect(() => {
-    if (chartRef.current) {
-      if (chartInstance.current) {
-        chartInstance.current.destroy();
-      }
-      const ctx = chartRef.current.getContext('2d');
-      chartInstance.current = new Chart(ctx, {
-        type: 'pie',
-        data: chartData,
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'top',
-            },
-            tooltip: {
-              enabled: true
-            }
-          }
-        }
-      });
-    }
-  }, [chartData]);
-
-  return (
-    <Box sx={{ display: 'flex', flexGrow: 1, p: { xs: 4, md: 1 }, justifyContent: 'center' , alignItems: 'center'}} mt={10}>
-      <Box sx={{ width: '50%', height: 500 }}>
-        <canvas ref={chartRef}></canvas>
-      </Box>
-    </Box>
-  );
-};
-
-export default PieChartComponent;
+  render() {
+    return (
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart width={400} height={400}>
+          <Pie
+            dataKey="value"
+            isAnimationActive={false}
+            data={data01}
+            cx="50%"
+            cy="50%"
+            outerRadius={80}
+            fill="#8884d8"
+            label
+          />
+          <Tooltip />
+        </PieChart>
+      </ResponsiveContainer>
+    );
+  }
+}
