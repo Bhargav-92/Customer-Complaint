@@ -4,10 +4,10 @@ import CompletedRequest from '../Cards/ComplatedRequest'
 import TotalComplaints from '../Cards/TotalComplaints'
 import User from '../Cards/User'
 import { Box, Divider, Grid, Typography } from '@mui/material'
-import LineChartComponent from '../Charts/LineChart'
-import PieChartComponent from '../Charts/PieChart'
+// import LineChartComponent from '../Charts/LineChart'
+// import PieChartComponent from '../Charts/PieChart'
 import RecentComplaints from '../RecentComplaints/RecentComplaints'
-
+ 
 const Dashboard = () => {
     return (
         <>
@@ -33,13 +33,13 @@ const Dashboard = () => {
                         {/* <LineChartComponent /> */}
                     </Grid>
                     <Divider sx={{ mt: 4, width: '100%', border: '1px solid orange' }} />
-                    <Grid lg={12}>
+                    {/* <Grid lg={12}>
                         <Typography variant="h4" component="h1" gutterBottom sx={{ mt: 4 }}>
                             Pie Chart
                             <Divider sx={{ mt: 4, width: '100%', border: '1px solid orange' }} />
                         </Typography>
                         <PieChartComponent />
-                    </Grid>
+                    </Grid> */}
                     <Grid lg={12}>
                         <Typography variant="h4" component="h1" gutterBottom sx={{ mt: 4 }}>
                             Recent Complaints
@@ -47,7 +47,7 @@ const Dashboard = () => {
                         </Typography>
                         <RecentComplaints />
                     </Grid>
-
+ 
                     <Grid lg={12}>
                         <Typography variant="h4" component="h1" gutterBottom sx={{ mt: 4 }}>
                             Recent Users
@@ -60,5 +60,5 @@ const Dashboard = () => {
         </>
     )
 }
-
+ 
 export default Dashboard

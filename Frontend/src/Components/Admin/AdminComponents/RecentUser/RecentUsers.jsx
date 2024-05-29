@@ -9,16 +9,16 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import ComplaintModal from '../ComplaintModal/ComplaintModal';
-
+ 
 const RecentUsers = ({ users }) => {
-    
+   
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-
+ 
   const staticData = [
     { name: 'John Doe', email: 'john@example.com', phone: '123-456-7890', role: 'user', complaint: 'This complaint is done by me' },
     { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210', role: 'user', complaint: 'This complaint is done by me for testing purpose' },
-    
+   
   ];
   const renderHeaderCell = ({ children, ...rest }) => {
     return (
@@ -32,13 +32,13 @@ const RecentUsers = ({ users }) => {
       </Resizable>
     );
   };
-
-
+ 
+ 
   const handleViewComplaint = (user) => {
     setSelectedUser(user);
     setModalOpen(true);
   };
-
+ 
   return (
     <div>
       <TableContainer component={Paper}>
@@ -60,7 +60,7 @@ const RecentUsers = ({ users }) => {
                 <TableCell>{user.phone}</TableCell>
                 <TableCell>{user.role}</TableCell>
                 <TableCell>
-              
+             
                   <Button variant="contained" color="primary" onClick={() => handleViewComplaint(user)}>View All Complaints</Button>
                 </TableCell>
               </TableRow>
@@ -72,5 +72,6 @@ const RecentUsers = ({ users }) => {
     </div>
   );
 };
-
+ 
 export default RecentUsers;
+ 

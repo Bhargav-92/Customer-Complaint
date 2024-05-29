@@ -13,59 +13,59 @@ const RecentComplaints = () => {
   const [selectedComplaint, setSelectedComplaint] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
+ 
   // Fetch complaints data from the API
   useEffect(() => {
     const fetchComplaintsData = async () => {
       try {
         const response = await axios_instance.get('/complaint');
-
+ 
         const ResentPending = response.data.filter(
             (complaint) => complaint.status === "Pending"
           );
         setComplaints(ResentPending);
-        
+       
         const fetchedComplaints = ResentPending;
         console.log(fetchedComplaints)
-
+ 
         // Sort complaints by date in descending order
         const sortedComplaints = fetchedComplaints.sort((a, b) => new Date(b.date) - new Date(a.date));
-
+ 
         // Get only the latest 10 complaints
         const latestComplaints = sortedComplaints.slice(0, 10);
-
+ 
         setComplaints(latestComplaints);
       } catch (error) {
         console.error('Error fetching complaints data:', error);
       }
     };
-
+ 
     fetchComplaintsData();
   }, []);
-
+ 
   // Function to handle opening modal and setting selected complaint
   const handleViewComplaint = (complaint) => {
     setSelectedComplaint(complaint);
     setModalOpen(true);
   };
-
+ 
   // Handle page change
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+ 
   // Handle rows per page change
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+ 
   // Calculate the complaints to be displayed based on the current page and rows per page
   const displayedComplaints = complaints.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
   );
-
+ 
   return (
     <div>
       <TableContainer component={Paper} sx={{ marginTop: '4rem' }}>

@@ -44,9 +44,12 @@ importers:
       gsap:
         specifier: ^3.12.5
         version: 3.12.5
+<<<<<<< Updated upstream
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
+=======
+>>>>>>> Stashed changes
       react:
         specifier: ^18.2.0
         version: 18.3.1
