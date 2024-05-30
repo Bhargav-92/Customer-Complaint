@@ -20,13 +20,12 @@ import UserLayout from "./layouts/UserLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import AdminProfile from "./Components/Admin/AdminComponents/Profile/Profile";
 import FAQ from "./Components/Admin/AdminComponents/Faq/FAQ";
-import LineChartComponent from "./Components/Admin/AdminComponents/Charts/LineChart";
-import PieChartComponent from "./Components/Admin/AdminComponents/Charts/PieChart";
+// import LineChartComponent from "./Components/Admin/AdminComponents/Charts/LineChart";
+// import PieChartComponent from "./Components/Admin/AdminComponents/Charts/PieChart";
 import UsersTable from "./Components/Admin/AdminComponents/AllUsers/UsersTable";
 import ComplaintsTable from "./Components/Admin/AdminComponents/AllComplaints/ComplaintsTable";
 
 function App() {
-
   return (
     <AuthProvider>
       <AppContent />
@@ -35,10 +34,10 @@ function App() {
 }
 
 function AppContent() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { isAuthenticated, role } = useContext(AuthContext);
-  console.log('isAuthenticated', isAuthenticated)
-  console.log('role', role)
+  console.log("isAuthenticated", isAuthenticated);
+  console.log("role", role);
 
   const AppBarwithChatBot = () => (
     <>
@@ -61,15 +60,14 @@ function AppContent() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/adminprofile" element={<AdminProfile />} />
       <Route path="/adminfaq" element={<FAQ/>} />
-      <Route path="/linechart" element={<LineChartComponent />} />
-      <Route path="/piechart" element={<PieChartComponent />} />
+      {/* <Route path="/linechart" element={<LineChartComponent />} />
+      <Route path="/piechart" element={<PieChartComponent />} /> */}
       <Route path="/allusers" element={<UsersTable />} />
-      <Route path="/allcomplaints" element={<ComplaintsTable/>} />
+      <Route path="/allcomplaints" element={<ComplaintsTable />} />
     </Routes>
   );
 
   const Client = (
-
     <Routes>
       <Route element={<AppBarwithChatBot />}>
         <Route path="/home" element={<Home />} />
@@ -78,18 +76,17 @@ function AppContent() {
         <Route path="/mycomplaint" element={<MyComplaint />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/profile" element={<Profile />} />
-
       </Route>
     </Routes>
   );
 
-  return role === "admin" ? <AdminLayout>
-    {Admin}
-  </AdminLayout> : role === "user" ? <UserLayout>
-    {Client}
-  </UserLayout> : <AuthLayout>
-    {AuthRoutes}
-  </AuthLayout>;
+  return role === "admin" ? (
+    <AdminLayout>{Admin}</AdminLayout>
+  ) : role === "user" ? (
+    <UserLayout>{Client}</UserLayout>
+  ) : (
+    <AuthLayout>{AuthRoutes}</AuthLayout>
+  );
 }
 
 export default App;

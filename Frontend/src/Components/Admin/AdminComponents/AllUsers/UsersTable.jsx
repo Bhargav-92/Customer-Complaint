@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Resizable } from 'react-resizable';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,18 +9,32 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import ComplaintModal from '../ComplaintModal/ComplaintModal';
+import axios_instance from '../../../../endPoints/baseURL';
+import Loader from '../../../Loader/Loader';
 
-const UsersTable = ({ users }) => {
 
-  const staticData = [
-    { name: 'John Doe', email: 'john@example.com', phone: '123-456-7890', role: 'user', complaint: 'This complaint is done by me' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210', role: 'user', complaint: 'This complaint is done by me for testing purpose' },
-    
-  ];
-
+const UsersTable = () => {
+  const [users, setUsers] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [Loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setLoading(true);
+        const response = await axios_instance.get('/userdata');
+        setUsers(response.data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setLoading(false);
+      }
+      
+    };
+
+    fetchUsers();
+  }, []);
 
   const renderHeaderCell = ({ children, ...rest }) => {
     return (
@@ -35,13 +49,14 @@ const UsersTable = ({ users }) => {
     );
   };
 
-
   const handleViewComplaint = (user) => {
     setSelectedUser(user);
     setModalOpen(true);
   };
 
   return (
+    <>
+    {Loading ? (<Loader/>) : (
     <div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650, marginTop: '4rem' }} aria-label="users table">
@@ -55,23 +70,30 @@ const UsersTable = ({ users }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {staticData.map((user, index) => (
+            {users.map((user, index) => (
               <TableRow key={index}>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.phone}</TableCell>
                 <TableCell>{user.role}</TableCell>
                 <TableCell>
-              
-                  <Button variant="contained" color="primary" onClick={() => handleViewComplaint(user)}>View All Complaints</Button>
+                  <Button variant="contained" color="primary" onClick={() => handleViewComplaint(user)}>
+                    View All Complaints
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <ComplaintModal isOpen={modalOpen} handleClose={() => setModalOpen(false)} complaint={selectedUser ? selectedUser.complaint : 'No user Complaint found'} />
+      <ComplaintModal
+        isOpen={modalOpen}
+        handleClose={() => setModalOpen(false)}
+        complaint={selectedUser ? selectedUser.complaint : 'No user complaint found'}
+      />
     </div>
+    )}
+    </>
   );
 };
 
