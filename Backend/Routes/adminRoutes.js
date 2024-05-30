@@ -15,11 +15,11 @@ router.patch('/complaints/:id', adminmiddleware, updateComplaintStatus);
 // get all compaint for user side raised by perticular user
 router.get('/user/:userId/complaints', adminmiddleware, getUserComplaint);
 
-
 // for update profile 
 router.get('/admin/profile', adminmiddleware, getprofile)
 
 // for update profile 
 router.patch('/admin/profile', adminmiddleware, updateprofile)
+
 
 export default router

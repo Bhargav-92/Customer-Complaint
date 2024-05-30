@@ -1,27 +1,21 @@
-import React from 'react'
+import * as React from "react";
+import { LineChart } from "@mui/x-charts/LineChart";
 
 
-
-const LineChart = () => {
-  const data = {
-    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6'],
-    datasets: [
-      {
-        label: 'Dataset',
-        data: Utils.numbers({count: 6, min: -100, max: 100}),
-        borderColor: Utils.CHART_COLORS.red,
-        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-        pointStyle: 'circle',
-        pointRadius: 10,
-        pointHoverRadius: 15
-      }
-    ]
-  };
+export default function GridDemo() {
   return (
-    <div>
-      
-    </div>
-  )
+    <>
+      <LineChart
+        xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+        series={[
+          {
+            data: [2, 5.5, 2, 8.5, 1.5, 5],
+          },
+        ]}
+        height={500}
+        margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
+        grid={{ vertical: true, horizontal: true }}
+      />
+    </>
+  );
 }
-
-export default LineChart

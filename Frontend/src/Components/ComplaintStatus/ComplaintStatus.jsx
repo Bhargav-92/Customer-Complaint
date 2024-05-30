@@ -15,8 +15,7 @@ function CustomTabPanel({ children, value, index }) {
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-    >
+      aria-labelledby={`simple-tab-${index}`}>
       {value === index && (
         <Box sx={{ p: 3 ,}}>
           <Typography>{children}</Typography>
@@ -43,16 +42,14 @@ export default function ComplaintStatus() {
     <Grid
       container
       justifyContent="center"
-      alignItems="center"
-    >
+      alignItems="center">
       <Grid item xs={12} sm={10} md={8}>
         <Box sx={{ textAlign: 'center' }}>
           <Box sx={{ borderBottom: '1px solid black', display: 'inline-block' }}>
             <Tabs
               value={value}
               onChange={handleChange}
-              aria-label="basic tabs example"
-            >
+              aria-label="basic tabs example">
               <Tab label="Pending" />
               <Tab label="Completed" sx={{ marginLeft: { md: '20rem', xs: '6rem' } }} />
             </Tabs>

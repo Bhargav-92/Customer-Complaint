@@ -25,16 +25,15 @@ const Dashboard = () => {
                     <Grid md={3} p={2}>
                         <User />
                     </Grid>
-                    <Grid lg={12}>
-                        <Typography variant="h4" component="h1" gutterBottom sx={{ mt: 4 }}>
+                    <Grid lg={12} p={5}>
+                        <Typography variant="h4" component="h1" gutterBottom>
                             Line Chart
                             <Divider sx={{ mt: 4, width: '100%', border: '1px solid orange' }} />
                         </Typography>
-                        {/* <LineChartComponent /> */}
+                        <LineChartComponent />
                     </Grid>
-                    <Divider sx={{ mt: 4, width: '100%', border: '1px solid orange' }} />
-                    <Grid lg={12}>
-                        <Typography variant="h4" component="h1" gutterBottom sx={{ mt: 4 }}>
+                    <Grid lg={12} p={5}>
+                        <Typography variant="h4" component="h1" gutterBottom>
                             Pie Chart
                             <Divider sx={{ mt: 4, width: '100%', border: '1px solid orange' }} />
                         </Typography>
