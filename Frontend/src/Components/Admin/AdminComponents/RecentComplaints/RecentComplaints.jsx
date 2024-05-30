@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import { KeyboardArrowDown, KeyboardArrowUp, Check as CheckIcon } from '@mui/icons-material';
 import ComplaintModal from '../ComplaintModal/ComplaintModal'; // Import ComplaintModal component
+import Loader from '../../../Loader/Loader';
 
 const RecentComplaints = () => {
   const [complaints, setComplaints] = useState([]);
@@ -13,11 +14,14 @@ const RecentComplaints = () => {
   const [selectedComplaint, setSelectedComplaint] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [Loading, setLoading] = useState(false);
  
   // Fetch complaints data from the API
   useEffect(() => {
     const fetchComplaintsData = async () => {
+
       try {
+        setLoading(true);
         const response = await axios_instance.get('/complaint');
  
         const ResentPending = response.data.filter(
@@ -37,7 +41,10 @@ const RecentComplaints = () => {
         setComplaints(latestComplaints);
       } catch (error) {
         console.error('Error fetching complaints data:', error);
+      } finally {
+        setLoading(false);
       }
+      
     };
  
     fetchComplaintsData();
@@ -67,6 +74,9 @@ const RecentComplaints = () => {
   );
  
   return (
+    <>
+      {Loading ? (<Loader/>) : (
+
     <div>
       <TableContainer component={Paper} sx={{ marginTop: '4rem' }}>
         <Table aria-label="complaints table">
@@ -143,6 +153,8 @@ const RecentComplaints = () => {
         complaint={selectedComplaint ? selectedComplaint.details : 'No complaint details found'}
       />
     </div>
+    )}
+    </>
   );
 };
 

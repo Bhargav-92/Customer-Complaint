@@ -10,21 +10,27 @@ import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import ComplaintModal from '../ComplaintModal/ComplaintModal';
 import axios_instance from '../../../../endPoints/baseURL';
+import Loader from '../../../Loader/Loader';
 
 
 const UsersTable = () => {
   const [users, setUsers] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [Loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
+        setLoading(true);
         const response = await axios_instance.get('/userdata');
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
+      } finally {
+        setLoading(false);
       }
+      
     };
 
     fetchUsers();
@@ -49,6 +55,8 @@ const UsersTable = () => {
   };
 
   return (
+    <>
+    {Loading ? (<Loader/>) : (
     <div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650, marginTop: '4rem' }} aria-label="users table">
@@ -84,6 +92,8 @@ const UsersTable = () => {
         complaint={selectedUser ? selectedUser.complaint : 'No user complaint found'}
       />
     </div>
+    )}
+    </>
   );
 };
 
