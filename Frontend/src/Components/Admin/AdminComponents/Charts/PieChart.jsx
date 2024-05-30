@@ -3,7 +3,7 @@ import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import axios_instance from "../../../../endPoints/baseURL";
 import { Box } from "@mui/material";
 
-const PieArcLabel = () => {
+const PieChartComponent = () => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
@@ -70,4 +70,4 @@ const PieArcLabel = () => {
   );
 };
 
-export default PieArcLabel;
+export default PieChartComponent;
