@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const ComplaintChatBot = () => {
-  return (
-    <div>ComplaintChatBot</div>
-  )
-}
+  return <div>ComplaintChatBot</div>;
+};
 
-export default ComplaintChatBot
+export default ComplaintChatBot;
