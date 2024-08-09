@@ -1,9 +1,13 @@
-import Navbar from '../component/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/home');
+  };
   return (
     <>
-      <Navbar />
+      <button onClick={handleClick}>Login</button>
     </>
   );
 };
