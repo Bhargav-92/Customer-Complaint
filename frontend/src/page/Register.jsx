@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import LoginImg from '/public/login.png';
+import LoginImg from '/login.png';
 
 const Register = () => {
   const navigate = useNavigate();
