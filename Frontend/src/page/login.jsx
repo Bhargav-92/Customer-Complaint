@@ -1,9 +1,8 @@
-import Navbar from '../component/Navbar';
 
 const Login = () => {
   return (
     <>
-      <Navbar />
+      <h1>Login</h1>
     </>
   );
 };
