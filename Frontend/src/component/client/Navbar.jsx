@@ -93,7 +93,6 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <Outlet />
     </>
   );
 };
