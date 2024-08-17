@@ -1,22 +1,38 @@
-import { Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Routes } from 'react-router-dom';
 import Login from './page/login/Login';
 import { ThemeProvider } from './utils/ThemeProvider';
-import { Route } from 'react-router-dom';
-import Navbar from './component/Navbar';
 import Register from './page/register/Register';
 import ClientDashboard from './page/client/clientDashboard/ClientDashboard';
+import AdminLayouts from './component/Layouts/AdminLayouts';
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Login />,
+      exact: true,
+    },
+    {
+      path: '/register',
+      element: <Register />,
+      exact: true,
+    },
+    {
+      path: '/home',
+      element: <ClientDashboard />,
+      exact: true,
+    },
+    {
+      path: '/dashboard',
+      element: <AdminLayouts />,
+      exact: true,
+    },
+  ]);
+
   return (
     <>
       <ThemeProvider>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route element={<Navbar />}>
-            <Route index path="/dashboard" element={<ClientDashboard />} />
-          </Route>
-        </Routes>
+        <RouterProvider router={router} />
       </ThemeProvider>
     </>
   );
