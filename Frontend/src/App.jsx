@@ -1,10 +1,10 @@
 import { Routes } from 'react-router-dom';
-import Hero from './component/Hero';
 import Login from './page/login/Login';
 import { ThemeProvider } from './utils/ThemeProvider';
 import { Route } from 'react-router-dom';
 import Navbar from './component/Navbar';
 import Register from './page/register/Register';
+import ClientDashboard from './page/client/clientDashboard/ClientDashboard';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route element={<Navbar />}>
-            <Route index path="/dashboard" element={<Hero />} />
+            <Route index path="/dashboard" element={<ClientDashboard />} />
           </Route>
         </Routes>
       </ThemeProvider>

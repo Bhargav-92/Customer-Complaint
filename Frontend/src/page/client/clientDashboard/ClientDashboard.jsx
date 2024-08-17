@@ -1,4 +1,4 @@
-const Hero = () => {
+const ClientDashboard = () => {
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content text-center">
@@ -16,4 +16,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default ClientDashboard;
