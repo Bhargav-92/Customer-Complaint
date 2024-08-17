@@ -1,9 +1,8 @@
-import { createBrowserRouter, RouterProvider, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './page/login/Login';
 import { ThemeProvider } from './utils/ThemeProvider';
 import Register from './page/register/Register';
-import ClientDashboard from './page/client/clientDashboard/ClientDashboard';
-import AdminLayouts from './component/Layouts/AdminLayouts';
+import ClientLayout from './component/Layouts/ClientLayout';
 
 function App() {
   const router = createBrowserRouter([
@@ -19,12 +18,7 @@ function App() {
     },
     {
       path: '/home',
-      element: <ClientDashboard />,
-      exact: true,
-    },
-    {
-      path: '/dashboard',
-      element: <AdminLayouts />,
+      element: <ClientLayout />,
       exact: true,
     },
   ]);
