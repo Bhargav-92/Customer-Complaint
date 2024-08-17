@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import ThemeContext from '../utils/ThemeProvider';
+import ThemeContext from '../../utils/ThemeProvider';
 import { Outlet } from 'react-router-dom';
 
 const Navbar = () => {
@@ -10,7 +10,11 @@ const Navbar = () => {
       <div className={`navbar bg-[#fff] text-[#000]`}>
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
