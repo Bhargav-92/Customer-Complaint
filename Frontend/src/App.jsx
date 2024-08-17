@@ -1,6 +1,6 @@
 import { Routes } from 'react-router-dom';
 import Hero from './component/Hero';
-import Login from './page/login';
+import Login from './page/login/Login';
 import { ThemeProvider } from './utils/ThemeProvider';
 import { Route } from 'react-router-dom';
 import Navbar from './component/Navbar';
