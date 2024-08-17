@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import loginImeg from '/login.png';
 
 const Login = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="hero bg-base-200 min-h-screen">
@@ -50,6 +52,12 @@ const Login = () => {
                 <button className="btn btn-primary w-full text-lg ">
                   Login
                 </button>
+              </div>
+              <div onClick={() => navigate('/register')}>
+                <label className="mt-2 cursor-pointer">
+                  {"Don't have an account "}
+                  <span className="text-[#7480FF] font-bold"> Sign up</span>
+                </label>
               </div>
             </form>
           </div>
