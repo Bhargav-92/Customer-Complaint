@@ -1,4 +1,4 @@
-import loginImeg from '/public/login.png';
+import loginImeg from '/login.png';
 
 const Login = () => {
   return (
@@ -16,7 +16,7 @@ const Login = () => {
                 <input
                   type="email"
                   placeholder="email"
-                  className="input input-bordered w-full lg:w-[90%]"
+                  className="input input-bordered w-full "
                   required
                 />
               </div>
@@ -27,10 +27,10 @@ const Login = () => {
                 <input
                   type="password"
                   placeholder="password"
-                  className="input input-bordered w-full lg:w-[90%]"
+                  className="input input-bordered w-full "
                   required
                 />
-                <div className="flex justify-between">
+                <div className="flex justify-between mt-5">
                   <label className="label cursor-pointer gap-3">
                     <input
                       type="checkbox"
@@ -47,7 +47,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary w-full lg:w-[90%]">
+                <button className="btn btn-primary w-full text-lg ">
                   Login
                 </button>
               </div>
