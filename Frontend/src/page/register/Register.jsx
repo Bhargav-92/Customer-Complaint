@@ -1,6 +1,6 @@
 import loginImeg from '/public/login.png';
 
-const Login = () => {
+const Register = () => {
   return (
     <>
       <div className="hero bg-base-200 min-h-screen">
@@ -61,4 +61,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
