@@ -1,37 +1,56 @@
-import React from 'react';
+import logo from '/public/logo.svg';
+import { TbLayoutDashboardFilled } from 'react-icons/tb';
+import { BiSolidBarChartSquare } from 'react-icons/bi';
+import { HiUsers } from 'react-icons/hi2';
 
-const Sidebar = ({ isOpen, onToggle }) => {
+const Sidebar = () => {
   return (
-    <div className={`drawer ${isOpen ? 'drawer-open' : ''}`}>
-      <input
-        id="my-drawer"
-        type="checkbox"
-        className="drawer-toggle"
-        checked={isOpen}
-        onChange={onToggle}
-      />
-      <div className="drawer-content">
-        {/* Page content here */}
-        <label htmlFor="my-drawer" className="btn btn-primary drawer-button">
-          {isOpen ? 'Close drawer' : 'Open drawer'}
-        </label>
-      </div>
-      <div className="drawer-side">
-        <label
-          htmlFor="my-drawer"
-          aria-label="close sidebar"
-          className="drawer-overlay"
-          onClick={onToggle}
-        ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-          {/* Sidebar content here */}
-          <li>
-            <a>Sidebar Item 1</a>
-          </li>
-          <li>
-            <a>Sidebar Item 2</a>
-          </li>
-        </ul>
+    <div className="h-screen">
+      <div className="flex flex-col gap-3 w-full h-full justify-between">
+        <div className="flex flex-col gap-10 px-4 mt-4">
+          <div className="flex items-center justify-center gap-2">
+            <img src={logo} alt="Logo" className="w-[4rem]" />
+            <div className="hidden md:flex">
+              <h1 className="text-sm lg:text-lg font-bold">
+                Customer Complaint
+              </h1>
+            </div>
+          </div>
+          <div className="flex flex-col gap-5 text-md sm:text-sm lg:text-lg">
+            <div className="flex items-center gap-2">
+              <div>
+                <TbLayoutDashboardFilled />
+              </div>
+              <div className="hidden sm:flex hover:text-slate-100 cursor-pointer">
+                Dashboard
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div>
+                <BiSolidBarChartSquare />
+              </div>
+              <div className="hidden sm:flex hover:text-slate-100 cursor-pointer">
+                Charts
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div>
+                <HiUsers />
+              </div>
+              <div className="hidden sm:flex hover:text-slate-100 cursor-pointer">
+                Users
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center text-md sm:text-xs md:text-sm lg:text-lg px-4 gap-4 mb-10 ">
+          <div className="avatar">
+            <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
+              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            </div>
+          </div>
+          <div className="hidden sm:flex font-medium">admin@gmail.com</div>
+        </div>
       </div>
     </div>
   );
