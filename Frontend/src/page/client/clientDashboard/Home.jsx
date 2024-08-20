@@ -1,15 +1,21 @@
+import homePage from '/public/homePage.png';
+
 const Home = () => {
   return (
     <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content text-center">
-        <div className="max-w-md">
-          <h1 className="text-5xl font-bold">Hello there</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-          <button className="btn bg-[#F77B00] text-white">Get Started</button>
+      <div className="hero-content flex-col lg:flex-row-reverse gap-80">
+        <img src={homePage} className="max-w-3xl" />
+        <div>
+          <h1 className="text-8xl font-bold text-[#F77B00]">Consumer</h1>
+          <h1 className="text-8xl mt-3">Service</h1>
+          <div className="flex flex-row mt-8 ">
+            <span className=" text-[#F77B00] text-7xl font-bold ">|</span>
+            <p className="py-6">
+              Lorem ipsum dolor sit amet consectetur adipisicing quae aliquid
+              blanditiis odit sit delectus mollitia. Facilis, aspernatur?
+            </p>
+          </div>
+          <button className="btn btn-primary">Get Started</button>
         </div>
       </div>
     </div>
