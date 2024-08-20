@@ -1,4 +1,4 @@
-import Dashboard from '../../page/admin/dashboard/Dashboard';
+import Main from '../admin/main';
 import Sidebar from '../admin/Sidebar';
 
 const AdminLayout = () => {
@@ -8,7 +8,7 @@ const AdminLayout = () => {
         <Sidebar />
       </section>
       <section className="flex flex-col w-[90%] sm:w-[85%] overflow-auto">
-        <Dashboard />
+        <Main />
       </section>
     </div>
   );
