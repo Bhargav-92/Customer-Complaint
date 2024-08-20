@@ -2,6 +2,7 @@ import logo from '/public/logo.svg';
 import { TbLayoutDashboardFilled } from 'react-icons/tb';
 import { BiSolidBarChartSquare } from 'react-icons/bi';
 import { HiUsers } from 'react-icons/hi2';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
@@ -21,17 +22,21 @@ const Sidebar = () => {
               <div>
                 <TbLayoutDashboardFilled />
               </div>
-              <div className="hidden sm:flex hover:text-slate-100 cursor-pointer">
-                Dashboard
-              </div>
+              <Link to={'/admin'}>
+                <div className="hidden sm:flex hover:text-slate-100 cursor-pointer">
+                  Dashboard
+                </div>
+              </Link>
             </div>
             <div className="flex items-center gap-2">
               <div>
                 <BiSolidBarChartSquare />
               </div>
-              <div className="hidden sm:flex hover:text-slate-100 cursor-pointer">
-                Charts
-              </div>
+              <Link to={'charts'}>
+                <div className="hidden sm:flex hover:text-slate-100 cursor-pointer">
+                  Charts
+                </div>
+              </Link>
             </div>
             <div className="flex items-center gap-2">
               <div>
