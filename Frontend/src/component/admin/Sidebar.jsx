@@ -1,4 +1,4 @@
-import logo from '/public/logo.svg';
+import logo from '/logo.svg';
 import { TbLayoutDashboardFilled } from 'react-icons/tb';
 import { BiSolidBarChartSquare } from 'react-icons/bi';
 import { HiUsers } from 'react-icons/hi2';

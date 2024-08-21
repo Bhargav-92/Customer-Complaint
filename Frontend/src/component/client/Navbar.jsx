@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import ThemeContext from '../../utils/ThemeProvider';
-import Logo from '../../../public/logo.svg';
+import Logo from '/logo.svg';
 import { IoNotificationsOutline } from 'react-icons/io5';
 
 const Navbar = () => {
