@@ -24,16 +24,14 @@ const Home = () => {
               onClick={() => {
                 console.log('clicked');
               }}
-              bg="#F77B00"
-              border="#F77B00"
+              variant={'custom'}
             />
             <Button
               title="FAQ"
               onClick={() => {
                 console.log('clicked');
               }}
-              border="#F77B00"
-              bg="#F77B00"
+              variant={'secondary'}
             />
           </div>
         </div>
