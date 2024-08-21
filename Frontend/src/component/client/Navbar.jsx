@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import ThemeContext from '../../utils/ThemeProvider';
-import { Outlet } from 'react-router-dom';
+import Logo from '../../../public/logo.svg';
+import { IoNotificationsOutline } from 'react-icons/io5';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -47,7 +48,12 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost text-xl">Customer-Complaint</a>
+          <div className="hidden md:block ">
+            <a className="btn btn-ghost text-xl">Customer-Complaint</a>
+          </div>
+          <div className="block md:hidden">
+            <img src={Logo} width={60} />
+          </div>
         </div>
         <div className="navbar-end">
           <button className="btn btn-ghost btn-circle">
@@ -65,6 +71,9 @@ const Navbar = () => {
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
+          </button>
+          <button className="btn btn-ghost btn-circle text-md">
+            <IoNotificationsOutline />
           </button>
           <button className="btn btn-ghost btn-circle">
             <label className="swap swap-rotate">
