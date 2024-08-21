@@ -7,15 +7,17 @@ const Home = () => {
       <div className="hero-content flex-col lg:flex-row-reverse  gap-80">
         <img src={homePage} className="max-w-3xl hidden md:block " />
         <div>
-          <h1 className="text-2xl  md:text-8xl font-bold text-[#F77B00]">
+          <h1 className="text-5xl  md:text-8xl font-bold text-[#F77B00]">
             Consumer
           </h1>
-          <h1 className="text-2xl  md:text-8xl mt-3">Service</h1>
-          <div className="flex flex-row mt-8 items-center gap-2">
-            <span className=" text-[#F77B00] text-7xl font-bold ">|</span>
-            <p className="py-6">
+          <h1 className="text-5xl  md:text-8xl mt-3">Service</h1>
+          <div className="flex flex-row  items-center gap-2">
+            <span className=" text-[#F77B00] text-7xl md:text-8xl font-semibold ">
+              |
+            </span>
+            <p className="py-10  text-sm md:text-xl mt-5">
               Lorem ipsum dolor sit amet consectetur adipisicing quae aliquid
-              blanditiis odit sit delectus mollitia. Facilis, aspernatur?
+              blanditiis odit
             </p>
           </div>
           <div className="flex flex-row gap-3 justify-center">
